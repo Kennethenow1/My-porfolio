@@ -1,0 +1,2548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://api.iconify.design" crossorigin />
+    <link rel="prefetch" href="experience.html" as="document" />
+    <link rel="prefetch" href="research.html" as="document" />
+    <style>
+      /* --bg sampled from Final white.png (border median RGB 236, 234, 237) */
+      :root {
+        color-scheme: light;
+        --bg: #eceaed;
+        --text: #1a1a1a;
+        --muted: #5c5c5c;
+        --border: #e0dce1;
+        --accent: #2563eb;
+        --ui-surface: rgba(255, 255, 255, 0.9);
+        --ui-border-hover: #c8c4ca;
+        --link-underline: rgba(26, 26, 26, 0.22);
+        --progress-line: rgba(26, 26, 26, 0.22);
+        --progress-line-hover: rgba(26, 26, 26, 0.38);
+        --progress-active-bg: #ffffff;
+        --progress-active-shadow: rgba(0, 0, 0, 0.06);
+        --chrome-bg: rgba(255, 255, 255, 0.52);
+        --chrome-border: rgba(210, 206, 214, 0.65);
+        --chrome-border-hover: rgba(180, 174, 186, 0.85);
+        --chrome-inset: rgba(255, 255, 255, 0.72);
+        --chrome-shadow: 0 2px 5px rgba(26, 26, 26, 0.05),
+          0 10px 32px rgba(26, 26, 26, 0.08);
+        --chrome-shadow-hover: 0 4px 12px rgba(26, 26, 26, 0.07),
+          0 18px 40px rgba(26, 26, 26, 0.11);
+        --chrome-theme-glow: rgba(37, 99, 235, 0.22);
+      }
+
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #141416;
+        --text: #f4f4f5;
+        --muted: #a1a1aa;
+        --border: #2e2e32;
+        --accent: #60a5fa;
+        --ui-surface: rgba(30, 30, 34, 0.94);
+        --ui-border-hover: #52525b;
+        --link-underline: rgba(244, 244, 245, 0.28);
+        --progress-line: rgba(255, 255, 255, 0.22);
+        --progress-line-hover: rgba(255, 255, 255, 0.42);
+        --progress-active-bg: #fafafa;
+        --progress-active-shadow: rgba(0, 0, 0, 0.35);
+        --chrome-bg: rgba(38, 38, 42, 0.55);
+        --chrome-border: rgba(255, 255, 255, 0.1);
+        --chrome-border-hover: rgba(255, 255, 255, 0.18);
+        --chrome-inset: rgba(255, 255, 255, 0.08);
+        --chrome-shadow: 0 2px 6px rgba(0, 0, 0, 0.35),
+          0 12px 36px rgba(0, 0, 0, 0.28);
+        --chrome-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.4),
+          0 20px 48px rgba(0, 0, 0, 0.3);
+        --chrome-theme-glow: rgba(96, 165, 250, 0.28);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      /* Fallback when Lenis is off; Lenis sets .lenis-smooth and overrides */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /*
+       * Cross-document view transitions: current page phases out, then the
+       * next page phases in (opacity-led crossfade + slight offset).
+       */
+      @view-transition {
+        navigation: auto;
+      }
+
+      @keyframes portfolio-phase-out {
+        from {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          opacity: 0;
+          transform: translate3d(0, -0.375rem, 0);
+        }
+      }
+
+      @keyframes portfolio-phase-in {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 0.625rem, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      ::view-transition-old(root) {
+        animation: portfolio-phase-out 0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+        z-index: 1;
+      }
+
+      ::view-transition-new(root) {
+        animation: portfolio-phase-in 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+        z-index: 2;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        @keyframes portfolio-phase-out-rm {
+          to {
+            opacity: 0;
+          }
+        }
+
+        @keyframes portfolio-phase-in-rm {
+          from {
+            opacity: 0;
+          }
+        }
+
+        ::view-transition-old(root) {
+          animation: portfolio-phase-out-rm 0.12s ease-out both;
+        }
+
+        ::view-transition-new(root) {
+          animation: portfolio-phase-in-rm 0.22s ease-out 0.04s both;
+        }
+      }
+
+      html.lenis {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      body {
+        font-family: "DM Sans", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* Main + sticky pedestal: scroll advances projects on the left only */
+      .layout {
+        display: flex;
+        align-items: stretch;
+        min-height: 100vh;
+        min-height: 100dvh;
+        background: var(--bg);
+      }
+
+      .layout__tracks {
+        flex: 1;
+        min-width: 0;
+        max-width: 56rem;
+      }
+
+      /* One full-viewport beat per project; inner block centered in left column */
+      .project-panel {
+        scroll-margin-top: 0.5rem;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        padding: clamp(2rem, 5vw, 4rem);
+        padding-left: clamp(4.25rem, 9vw, 6.75rem);
+        padding-right: clamp(3rem, 10vw, 6rem);
+        box-sizing: border-box;
+      }
+
+      .project-panel__inner {
+        width: 100%;
+        max-width: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .project-panel__index {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.75rem;
+      }
+
+      .project-panel h1 {
+        margin: 0 0 1.25rem;
+      }
+
+      .project-panel__context-label,
+      .project-panel__impact-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.5rem;
+      }
+
+      .project-panel__impact-label {
+        margin-top: 0.15rem;
+      }
+
+      .project-panel__context,
+      .project-panel__impact {
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--muted);
+        margin: 0 0 1.75rem;
+      }
+
+      .project-panel .meta {
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        margin: 0;
+      }
+
+      .project-panel__actions {
+        margin: 1.35rem 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.85rem 1.35rem;
+      }
+
+      .project-panel__live-link,
+      .project-panel__detail-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid var(--link-underline);
+        padding-bottom: 0.12rem;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .project-panel__live-link:hover,
+      .project-panel__detail-link:hover {
+        border-bottom-color: var(--text);
+      }
+
+      .project-panel__live-link:focus-visible,
+      .project-panel__detail-link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+        border-bottom-color: transparent;
+      }
+
+      .project-panel__live-icon,
+      .project-panel__detail-icon {
+        font-size: 0.85em;
+        font-weight: 500;
+        opacity: 0.65;
+      }
+
+      /* Far-left section progress (horizontal lines) */
+      .scroll-progress {
+        position: fixed;
+        z-index: 50;
+        left: max(0.75rem, env(safe-area-inset-left, 0px));
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.9rem;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: transparent;
+        list-style: none;
+      }
+
+      .scroll-progress__item {
+        display: block;
+        padding: 0.35rem 0.5rem 0.35rem 0;
+        margin: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .scroll-progress__item:focus {
+        outline: none;
+      }
+
+      .scroll-progress__item:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .scroll-progress__line {
+        display: block;
+        height: 2px;
+        border-radius: 1px;
+        width: 0.875rem;
+        background: var(--progress-line);
+        transition:
+          width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+          background 0.35s ease,
+          box-shadow 0.35s ease,
+          opacity 0.35s ease;
+      }
+
+      .scroll-progress__item.is-active .scroll-progress__line {
+        width: 2.75rem;
+        background: var(--progress-active-bg);
+        opacity: 1;
+        box-shadow:
+          0 0 0 1px var(--progress-active-shadow),
+          0 2px 14px rgba(0, 0, 0, 0.12);
+      }
+
+      .scroll-progress__item:not(.is-active):hover .scroll-progress__line {
+        background: var(--progress-line-hover);
+        width: 1.125rem;
+      }
+
+      .scroll-progress--many {
+        max-height: min(72vh, 22rem);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 0.35rem;
+        scrollbar-width: thin;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .scroll-progress__line {
+          transition-duration: 0.05s;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .scroll-progress {
+          top: auto;
+          bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+          left: max(0.75rem, env(safe-area-inset-left, 0px));
+          transform: none;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.65rem;
+          margin: 0;
+          padding: 0.42rem 0.65rem;
+          border-radius: 999px;
+          max-height: none;
+          overflow: visible;
+          background: color-mix(in srgb, var(--bg) 82%, #ffffff 18%);
+          border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.5) inset,
+            0 6px 28px rgba(26, 26, 26, 0.08);
+          backdrop-filter: blur(16px) saturate(1.06);
+          -webkit-backdrop-filter: blur(16px) saturate(1.06);
+        }
+
+        html[data-theme="dark"] .scroll-progress {
+          background: color-mix(in srgb, var(--bg) 86%, #27272a 14%);
+          border-color: rgba(255, 255, 255, 0.1);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.06) inset,
+            0 8px 36px rgba(0, 0, 0, 0.42);
+        }
+
+        html[data-theme="dark"] .scroll-progress__line {
+          background: rgba(255, 255, 255, 0.26);
+        }
+
+        html[data-theme="dark"]
+          .scroll-progress__item.is-active
+          .scroll-progress__line {
+          background: var(--progress-active-bg);
+          box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.12),
+            0 2px 10px rgba(0, 0, 0, 0.28);
+        }
+
+        .scroll-progress__item {
+          padding: 0.25rem;
+        }
+
+        .scroll-progress__line {
+          width: 0.625rem;
+        }
+
+        .scroll-progress__item.is-active .scroll-progress__line {
+          width: 2rem;
+        }
+
+        .project-panel {
+          padding-left: clamp(1.5rem, 5vw, 2.5rem);
+          padding-right: clamp(1.5rem, 5vw, 2.5rem);
+          padding-bottom: clamp(4rem, 14vh, 6rem);
+        }
+
+        .project-panel__inner {
+          max-width: 26rem;
+        }
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin: 0 0 1rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+
+      .meta dt {
+        font-weight: 600;
+        color: var(--text);
+        margin: 0 0 0.25rem;
+      }
+
+      .meta dd {
+        margin: 0;
+      }
+
+      .meta__block--stack {
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+
+      .stack-icons {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem 1.1rem;
+        align-items: center;
+      }
+
+      .stack-icons li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        min-height: 1.35rem;
+      }
+
+      .stack-icon {
+        width: 1.125rem;
+        height: 1.125rem;
+        flex-shrink: 0;
+        display: block;
+        object-fit: contain;
+        /* Grayscale stack (Figma-style); brand SVGs tone to --muted */
+        filter: grayscale(1) contrast(1.05);
+        opacity: 0.9;
+      }
+
+      .stack-icon-svg {
+        width: 1.125rem;
+        height: 1.125rem;
+        flex-shrink: 0;
+        display: block;
+        overflow: visible;
+        color: var(--muted);
+        filter: grayscale(1) contrast(1.05);
+        opacity: 0.9;
+      }
+
+      .stack-icons__label {
+        font-size: inherit;
+        line-height: 1.3;
+        color: var(--muted);
+      }
+
+      .visual {
+        flex: 0 0 32%;
+        min-width: 0;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100dvh;
+        background: var(--bg);
+        isolation: isolate;
+        overflow: hidden;
+        align-self: flex-start;
+      }
+
+      /*
+       * JS sizes this box like object-fit: cover (scale + center): the column
+       * is always filled edge-to-edge; overflow clips. Frame % track the image.
+       */
+      .visual__cover {
+        position: absolute;
+        z-index: 0;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .visual__base {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+      }
+
+      .visual__frame {
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        bottom: 60%;
+        transform: translate(-50%, 0);
+        width: min(72%, 100%);
+        height: auto;
+        max-height: 46%;
+        object-fit: contain;
+        object-position: center bottom;
+        display: block;
+        mix-blend-mode: multiply;
+        pointer-events: none;
+      }
+
+      html[data-theme="dark"] .visual__frame {
+        mix-blend-mode: normal;
+      }
+
+      html[data-theme="dark"] .stack-icon,
+      html[data-theme="dark"] .stack-icon-svg {
+        filter: grayscale(1) contrast(1.05) invert(1) brightness(1.12);
+        opacity: 0.88;
+      }
+
+      /*
+       * Edge fades: left meets the text column; right eases the pedestal into
+       * --bg toward the viewport edge (nav still sits over the same palette).
+       */
+      .visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background-image:
+          linear-gradient(to right, var(--bg) 0%, transparent 72%),
+          linear-gradient(to left, var(--bg) 0%, transparent 72%);
+        background-size: min(52px, 12%) 100%, min(52px, 12%) 100%;
+        background-position: left, right;
+        background-repeat: no-repeat;
+      }
+
+      /* Vertical site nav — fixed on viewport right */
+      .site-nav {
+        position: fixed;
+        z-index: 9998;
+        right: max(1.1rem, env(safe-area-inset-right, 0px));
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .site-nav__list {
+        list-style: none;
+        margin: 0;
+        padding: 0.35rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1.4rem;
+      }
+
+      .site-nav__item {
+        margin: 0;
+        padding: 0;
+      }
+
+      .site-nav__link {
+        pointer-events: auto;
+        display: inline-block;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--muted);
+        border-right: 2px solid transparent;
+        padding: 0.2rem 0.55rem 0.2rem 0;
+        margin-right: -2px;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .site-nav__link:hover {
+        color: var(--text);
+      }
+
+      .site-nav__link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .site-nav__link[aria-current="page"] {
+        color: var(--text);
+        font-weight: 700;
+        border-right-color: var(--text);
+      }
+
+      .site-nav__item--theme {
+        pointer-events: auto;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .site-nav__item--theme .top-actions__theme {
+        vertical-align: middle;
+      }
+
+      @media (min-width: 769px) {
+        .site-nav__item--theme {
+          margin-top: 1.35rem;
+          padding-top: 1.15rem;
+          border-top: 1px solid
+            color-mix(in srgb, var(--border) 72%, transparent);
+          align-self: flex-end;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .layout {
+          flex-direction: column;
+        }
+
+        /* Pedestal / frame asset is desktop-only — avoids fragile cover math on phones */
+        .visual {
+          display: none !important;
+        }
+
+        .layout__tracks {
+          max-width: none;
+          flex: 1;
+          padding-top: calc(4rem + env(safe-area-inset-top, 0px));
+        }
+
+        .project-panel {
+          min-height: min(88vh, 760px);
+          justify-content: flex-start;
+          padding-top: clamp(1rem, 3vh, 1.75rem);
+        }
+
+        /* Sticky top bar: frosted, tuned per color-scheme */
+        .site-nav {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: auto !important;
+          transform: none !important;
+          max-width: none;
+          padding: calc(0.55rem + env(safe-area-inset-top, 0px))
+            max(4.15rem, calc(env(safe-area-inset-right, 0px) + 3.55rem))
+            0.65rem max(0.85rem, env(safe-area-inset-left, 0px));
+          background: color-mix(in srgb, var(--bg) 88%, #ffffff 12%);
+          border-bottom: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.55) inset,
+            0 10px 36px rgba(26, 26, 26, 0.07);
+          backdrop-filter: blur(20px) saturate(1.08);
+          -webkit-backdrop-filter: blur(20px) saturate(1.08);
+          z-index: 10002;
+        }
+
+        html[data-theme="dark"] .site-nav {
+          background: color-mix(in srgb, var(--bg) 82%, #1f1f23 18%);
+          border-bottom-color: rgba(255, 255, 255, 0.1);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.07) inset,
+            0 12px 44px rgba(0, 0, 0, 0.48);
+        }
+
+        .site-nav__list {
+          width: 100%;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 0.45rem 0.85rem;
+        }
+
+        .site-nav__item--theme {
+          margin-left: auto;
+          margin-top: 0;
+          padding-top: 0;
+          border-top: none;
+          align-self: center;
+        }
+
+        .site-nav__item--theme .top-actions__theme {
+          width: 2.65rem;
+          height: 2.65rem;
+          border-radius: 11px;
+        }
+
+        .site-nav__item--theme .top-actions__theme-icon {
+          width: 1.35rem;
+          height: 1.35rem;
+        }
+
+        .site-nav__link {
+          font-size: 0.625rem;
+          padding: 0.2rem 0;
+          margin-right: 0;
+          border-right: none;
+          border-bottom: 2px solid transparent;
+        }
+
+        .site-nav__link[aria-current="page"] {
+          border-right-color: transparent;
+          border-bottom-color: var(--text);
+        }
+
+        .top-actions {
+          top: calc(0.48rem + env(safe-area-inset-top, 0px));
+          right: max(0.65rem, env(safe-area-inset-right, 0px));
+          z-index: 10003;
+        }
+
+        .top-actions__assistant {
+          min-height: 2.75rem;
+          padding: 0.35rem 0.15rem;
+          display: inline-flex;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 768px) and (prefers-reduced-transparency: reduce) {
+        .site-nav,
+        .scroll-progress {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+
+        .site-nav {
+          background: var(--bg);
+        }
+
+        html[data-theme="dark"] .site-nav {
+          background: var(--bg);
+        }
+
+        .scroll-progress {
+          background: var(--bg);
+        }
+
+        html[data-theme="dark"] .scroll-progress {
+          background: color-mix(in srgb, var(--bg) 94%, #3f3f46);
+        }
+      }
+
+      .top-actions {
+        position: fixed;
+        z-index: 10001;
+        top: 1rem;
+        right: max(1rem, env(safe-area-inset-right, 0px));
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.35rem;
+        padding: 0.15rem 0.2rem;
+      }
+
+      .top-actions__assistant {
+        margin: 0;
+        padding: 0.4rem 0.1rem;
+        font: inherit;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: none;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
+        text-underline-offset: 0.38em;
+        text-decoration-thickness: 1px;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          color 0.2s ease,
+          text-decoration-color 0.2s ease;
+      }
+
+      .top-actions__assistant:hover {
+        color: var(--text);
+        text-decoration-color: color-mix(in srgb, var(--text) 55%, transparent);
+      }
+
+      .top-actions__assistant:focus {
+        outline: none;
+      }
+
+      .top-actions__assistant:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .top-actions__theme {
+        box-sizing: border-box;
+        position: relative;
+        width: 2.85rem;
+        height: 2.85rem;
+        margin: 0;
+        padding: 0;
+        border: 1px solid var(--chrome-border);
+        border-radius: 12px;
+        background: var(--chrome-bg);
+        backdrop-filter: blur(18px) saturate(1.12);
+        -webkit-backdrop-filter: blur(18px) saturate(1.12);
+        box-shadow: inset 0 1px 0 var(--chrome-inset), var(--chrome-shadow);
+        cursor: pointer;
+        color: var(--muted);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.24s ease,
+          border-color 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .top-actions__theme:hover {
+        color: var(--text);
+        border-color: var(--chrome-border-hover);
+        box-shadow: inset 0 1px 0 var(--chrome-inset), var(--chrome-shadow-hover);
+        transform: translateY(-2px);
+      }
+
+      .top-actions__theme:active {
+        transform: translateY(0) scale(0.97);
+        transition-duration: 0.1s;
+      }
+
+      .top-actions__theme:focus {
+        outline: none;
+      }
+
+      .top-actions__theme:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .top-actions__theme-icon {
+        width: 1.35rem;
+        height: 1.35rem;
+        flex-shrink: 0;
+        display: none;
+        filter: grayscale(1);
+        opacity: 0.92;
+      }
+
+      #theme-toggle[aria-pressed="true"] .top-actions__theme-icon--moon {
+        display: none;
+      }
+
+      #theme-toggle[aria-pressed="true"] .top-actions__theme-icon--sun {
+        display: block;
+      }
+
+      #theme-toggle:not([aria-pressed="true"]) .top-actions__theme-icon--moon {
+        display: block;
+      }
+
+      #theme-toggle:not([aria-pressed="true"]) .top-actions__theme-icon--sun {
+        display: none;
+      }
+
+      .top-actions__theme[aria-pressed="true"] {
+        background: linear-gradient(155deg, #232328 0%, #141418 100%);
+        color: #c4c4c8;
+        border-color: rgba(255, 255, 255, 0.14);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.12),
+          0 6px 24px var(--chrome-theme-glow),
+          0 4px 14px rgba(0, 0, 0, 0.18);
+      }
+
+      .top-actions__theme[aria-pressed="true"] .top-actions__theme-icon {
+        filter: grayscale(1) brightness(1.15);
+        opacity: 1;
+      }
+
+      .top-actions__theme[aria-pressed="true"]:hover {
+        color: #e4e4e7;
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          0 8px 28px var(--chrome-theme-glow),
+          0 8px 24px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"] {
+        background: linear-gradient(155deg, #fafafa 0%, #e8e8ec 100%);
+        color: #52525b;
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          0 6px 24px var(--chrome-theme-glow),
+          0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"]:hover {
+        color: #3f3f46;
+        border-color: rgba(0, 0, 0, 0.12);
+        box-shadow:
+          inset 0 1px 0 #ffffff,
+          0 8px 32px var(--chrome-theme-glow),
+          0 8px 20px rgba(0, 0, 0, 0.14);
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"] .top-actions__theme-icon {
+        filter: grayscale(1) brightness(0.55);
+        opacity: 0.95;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .top-actions__theme,
+        .top-actions__theme:hover,
+        .top-actions__theme:active,
+        .top-actions__assistant {
+          transition-duration: 0.01ms;
+        }
+
+        .top-actions__theme:hover,
+        .top-actions__theme[aria-pressed="true"]:hover {
+          transform: none;
+        }
+
+        .top-actions__theme:active {
+          transform: none;
+        }
+      }
+    </style>
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("portfolio-theme") === "dark")
+            document.documentElement.setAttribute("data-theme", "dark");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="top-actions" role="toolbar" aria-label="Page tools">
+      <button
+        type="button"
+        class="top-actions__assistant"
+        id="assistant-btn"
+        aria-label="Open assistant"
+      >
+        Assistant
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Site">
+      <ul class="site-nav__list">
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="me.html">Me</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="about.html">About</a>
+        </li>
+        <li class="site-nav__item">
+          <a
+            class="site-nav__link"
+            href="project.html"
+            aria-current="page"
+            >Projects</a
+          >
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="experience.html">Experience</a>
+        </li>
+        <li class="site-nav__item">
+          <a
+            class="site-nav__link"
+            href="research.html"
+            aria-label="Research &amp; writing"
+            >Research &amp; writing</a
+          >
+        </li>
+        <li class="site-nav__item site-nav__item--theme">
+          <button
+            type="button"
+            class="top-actions__theme"
+            id="theme-toggle"
+            aria-pressed="false"
+            aria-label="Enable dark mode"
+          >
+            <svg
+              class="top-actions__theme-icon top-actions__theme-icon--moon"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg
+              class="top-actions__theme-icon top-actions__theme-icon--sun"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <script>
+            (function () {
+              var t = document.getElementById("theme-toggle");
+              if (!t) return;
+              var dark =
+                document.documentElement.getAttribute("data-theme") === "dark";
+              t.setAttribute("aria-pressed", dark ? "true" : "false");
+              t.setAttribute(
+                "aria-label",
+                dark ? "Enable light mode" : "Enable dark mode"
+              );
+            })();
+          </script>
+        </li>
+      </ul>
+    </nav>
+
+    <nav
+      class="scroll-progress scroll-progress--many"
+      id="scroll-progress"
+      aria-label="Projects"
+    >
+      <button
+        type="button"
+        class="scroll-progress__item is-active"
+        data-target="#project-1"
+        aria-label="Project 1"
+        aria-current="true"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-2"
+        aria-label="Project 2"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-3"
+        aria-label="Project 3"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-4"
+        aria-label="Project 4"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-5"
+        aria-label="Project 5"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-6"
+        aria-label="Project 6"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-7"
+        aria-label="Project 7"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-8"
+        aria-label="Project 8"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-9"
+        aria-label="Project 9"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#project-10"
+        aria-label="Project 10"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <div class="layout">
+      <main class="layout__tracks">
+        <section class="project-panel" id="project-1">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 1 of 10</p>
+            <h1>Atelier still life</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              A personal study in light, material, and negative space—built as a
+              neutral stage for artwork and a signature moment for this site.
+              The goal was gallery-quiet, not flashy 3D.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Became the visual spine of the portfolio: reusable scene, fast
+              loads, and a calm frame that keeps focus on project stories.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>3D, art direction</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2026</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>March</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>1</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:blender.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Blender</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Figma</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/work/atelier-still-life"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="atelier-still-life.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-2">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 2 of 10</p>
+            <h1>Nordstrand &amp; Co. digital</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              A regional architecture studio needed a site that felt tactile
+              and editorial without drowning in portfolio grids. Partners and
+              prospective clients were the primary audience.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Inquiry quality improved: longer briefs, fewer generic contacts,
+              and the team retired a maintenance-heavy Squarespace setup.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Lead design, front-end</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2025</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>September</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>4</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Figma</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:html5.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">HTML</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:css3.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">CSS</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/devicon:sanity.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Sanity</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/nordstrand-architecture"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="nordstrand-co.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-3">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 3 of 10</p>
+            <h1>Lumina banking</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              Mobile-first redesign for everyday banking: pay, save, and
+              dispute flows were fragmented and failed accessibility review.
+              Worked with product and compliance from discovery onward.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Task success in usability tests rose sharply; WCAG contrast issues
+              on money movement flows dropped to zero before rollout.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Product design</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2024</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>June</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>12</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Figma</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/mdi:layers-triple.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Principle</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:swift.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">SwiftUI</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/lumina-banking"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="lumina-banking.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-4">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 4 of 10</p>
+            <h1>Meridian Summit titles</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              Opening motion for an annual tech conference—tight deadline,
+              strict broadcast safe zones, and a brand that prizes restraint over
+              particle explosions.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Ran across three days of keynotes and social cutdowns; production
+              picked up the toolkit for lower-thirds without extra design hours.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Motion design</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2024</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>October</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>3</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:adobeaftereffects.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">After Effects</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:adobeillustrator.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Illustrator</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/meridian-summit"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="meridian-summit.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-5">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 5 of 10</p>
+            <h1>Field Studies journal</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              Small-batch publication for a nonprofit field-research network;
+              each issue had to feel archival but stay cheap to print in runs
+              of five hundred.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Print partner quoted lower spoilage after grid and bleed cleanup;
+              readership surveys cited layout clarity as a top win.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Editorial design</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2023</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>April</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>2</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:adobeindesign.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">InDesign</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:adobeacrobatreader.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Acrobat</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/field-studies-journal"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="field-studies-journal.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-6">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 6 of 10</p>
+            <h1>Harbor API hub</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              Developers could not find auth examples or error codes; support
+              tickets repeated the same five questions. The docs needed
+              structure, search, and tone that matched a growing B2B product.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Support volume for “getting started” fell after launch;
+              time-to-first-successful-request dropped in analytics dashboards.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>UX writing, information arch.</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2023</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>November</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>5</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:mdx.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">MDX</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:nextdotjs.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Next.js</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:algolia.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Algolia</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/harbor-api-docs"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="harbor-api-hub.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-7">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 7 of 10</p>
+            <h1>Solstice retail drop</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              Seasonal campaign for a footwear label entering two new cities—OOH,
+              retail windows, and paid social had to share one modular story
+              without reshooting per format.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              In-store uplift beat the prior summer pilot; marketing reused
+              crops for six weeks without creative fatigue in brand tracking.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Creative direction</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2022</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>July</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>8</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:adobephotoshop.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Photoshop</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/mdi:camera-iris.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Capture One</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Figma</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/solstice-retail"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="solstice-retail.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-8">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 8 of 10</p>
+            <h1>Workshop Supply identity</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              New brand for a maker-focused tool retailer competing with big-box
+              beige. The mark needed to work on stamped metal, stitched tags,
+              and monochrome wayfinding.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Rolled out across packaging and two store pilots; wholesale
+              partners cited stronger shelf recognition in follow-up interviews.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Brand design</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2022</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>February</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>3</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:adobeillustrator.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Illustrator</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/mdi:format-font.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">FontLab</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Figma</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/workshop-supply"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="workshop-supply.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-9">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 9 of 10</p>
+            <h1>Echo Home companion</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              Companion app for a line of connected thermostats and lights—users
+              were overwhelmed by pairing and automations. Hardware shipped; we
+              could not change industrial design, only software clarity.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Onboarding completion increased in beta; average time to create
+              a first scene dropped after IA and empty-state work shipped.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>UX, UI systems</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2021</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>May</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>6</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Figma</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/devicon:reactnative.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">React Native</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/echo-home"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="echo-home.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="project-panel" id="project-10">
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Project 10 of 10</p>
+            <h1>Archive 01 microsite</h1>
+            <p class="project-panel__context-label">Context</p>
+            <p class="project-panel__context">
+              Temporary online archive for a group show—works had to load fast
+              on poor Wi‑Fi, captions needed curator sign-off, and the timeline
+              was under six weeks door to door.
+            </p>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Gallery extended the build for a traveling variant; median image
+              decode stayed under target on mid-tier phones in field testing.
+            </p>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Design, development</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2021</dd>
+              </div>
+              <div>
+                <dt>Month</dt>
+                <dd>August</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>2</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:eleventy.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Eleventy</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/mdi:image-auto-adjust.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Sharp</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:netlify.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Netlify</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="https://example.com/archive-01"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View live<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="archive-01.html"
+                >Learn about this project<span
+                  class="project-panel__detail-icon"
+                  aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+      </main>
+      <aside class="visual" aria-hidden="true">
+        <div class="visual__cover">
+          <img
+            class="visual__base"
+            src="Final white.png"
+            alt=""
+            width="1024"
+            height="1536"
+            decoding="async"
+          />
+          <img
+            class="visual__frame"
+            src="picture%20frame%20(1).png"
+            alt=""
+            width="1536"
+            height="1024"
+            decoding="async"
+          />
+        </div>
+      </aside>
+      <script>
+        (function () {
+          if (document.documentElement.getAttribute("data-theme") !== "dark")
+            return;
+          var b = document.querySelector(".visual__base");
+          var f = document.querySelector(".visual__frame");
+          if (b) b.src = "final black .png";
+          if (f) f.src = "Classic black frame with white mat (1).png";
+        })();
+      </script>
+    </div>
+
+    <script
+      src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        if (typeof Lenis === "undefined") return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
+
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+
+        var lenis = new Lenis({
+          lerp: 0.052,
+          wheelMultiplier: 0.7,
+          touchMultiplier: 1.1,
+          smoothWheel: true,
+          smoothTouch: false,
+          syncTouch: true,
+          syncTouchLerp: 0.065,
+        });
+
+        window.lenisScrollToOptions = {
+          duration: 1.55,
+          easing: easeOutCubic,
+        };
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        window.lenis = lenis;
+      })();
+    </script>
+    <script
+      src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
+          return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (window.lenis) {
+          window.lenis.on("scroll", ScrollTrigger.update);
+        }
+
+        function prepareDrawTargets(svg) {
+          var shapes = svg.querySelectorAll(
+            "path, line, polyline, polygon, circle, ellipse"
+          );
+          var drawables = [];
+          shapes.forEach(function (shape) {
+            try {
+              if (typeof shape.getTotalLength !== "function") return;
+              var len = shape.getTotalLength();
+              if (!len || !isFinite(len)) return;
+              shape.setAttribute("fill", "none");
+              if (!shape.getAttribute("stroke")) {
+                shape.setAttribute("stroke", "currentColor");
+              }
+              if (!shape.getAttribute("stroke-width")) {
+                shape.setAttribute("stroke-width", "1.35");
+              }
+              shape.setAttribute("stroke-linecap", "round");
+              shape.setAttribute("stroke-linejoin", "round");
+              shape.setAttribute("stroke-dasharray", String(len));
+              shape.setAttribute("stroke-dashoffset", String(len));
+              drawables.push(shape);
+            } catch (e) {}
+          });
+          return drawables;
+        }
+
+        function fetchInlineSvg(img) {
+          return fetch(img.src, { mode: "cors", credentials: "omit" })
+            .then(function (res) {
+              if (!res.ok) throw new Error("svg fetch");
+              return res.text();
+            })
+            .then(function (text) {
+              var div = document.createElement("div");
+              div.innerHTML = text.trim();
+              var svg = div.querySelector("svg");
+              if (!svg) throw new Error("no svg");
+              svg.setAttribute("class", "stack-icon stack-icon-svg");
+              svg.setAttribute("width", "18");
+              svg.setAttribute("height", "18");
+              svg.setAttribute("aria-hidden", "true");
+              svg.setAttribute("focusable", "false");
+              var drawables = prepareDrawTargets(svg);
+              svg._portfolioDrawables = drawables;
+              img.replaceWith(svg);
+              return svg;
+            })
+            .catch(function () {
+              return null;
+            });
+        }
+
+        function buildStackAnimations() {
+          gsap.utils.toArray(".stack-icons").forEach(function (ul) {
+            var items = ul.querySelectorAll(":scope > li");
+            if (!items.length) return;
+
+            var tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: ul,
+                start: "top 90%",
+                toggleActions: "play none none none",
+              },
+            });
+
+            tl.from(
+              items,
+              {
+                y: 40,
+                opacity: 0,
+                stagger: 0.12,
+                duration: 1,
+                ease: "power4.out",
+              },
+              0
+            );
+
+            var svgs = ul.querySelectorAll(":scope > li svg.stack-icon-svg");
+            svgs.forEach(function (svg, i) {
+              var shapes = svg._portfolioDrawables;
+              if (!shapes || !shapes.length) return;
+              tl.to(
+                shapes,
+                {
+                  strokeDashoffset: 0,
+                  duration: 1.2,
+                  ease: "power2.out",
+                  stagger: 0.06,
+                },
+                1 + i * 0.18
+              );
+            });
+          });
+
+          ScrollTrigger.refresh();
+        }
+
+        var imgs = document.querySelectorAll(".stack-icons img.stack-icon");
+        if (!imgs.length) {
+          buildStackAnimations();
+        } else {
+          Promise.all(Array.prototype.map.call(imgs, fetchInlineSvg)).then(
+            function () {
+              buildStackAnimations();
+            }
+          );
+        }
+
+        window.addEventListener("load", function () {
+          ScrollTrigger.refresh();
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        var THEME_KEY = "portfolio-theme";
+        var ASSETS = {
+          light: {
+            base: "Final white.png",
+            frame: "picture%20frame%20(1).png",
+          },
+          dark: {
+            base: "final black .png",
+            frame: "Classic black frame with white mat (1).png",
+          },
+        };
+
+        var toggle = document.getElementById("theme-toggle");
+        var visual = document.querySelector(".visual");
+        var cover = document.querySelector(".visual__cover");
+        var base = document.querySelector(".visual__base");
+        var frame = document.querySelector(".visual__frame");
+
+        var mobileCoverMq = window.matchMedia("(max-width: 768px)");
+
+        function layoutCover() {
+          if (!visual || !cover || !base) return;
+          if (mobileCoverMq.matches) {
+            cover.style.left = "";
+            cover.style.top = "";
+            cover.style.width = "";
+            cover.style.height = "";
+            return;
+          }
+          var cs = window.getComputedStyle(visual);
+          var padT = parseFloat(cs.paddingTop) || 0;
+          var padB = parseFloat(cs.paddingBottom) || 0;
+          var padL = parseFloat(cs.paddingLeft) || 0;
+          var padR = parseFloat(cs.paddingRight) || 0;
+          var W = visual.clientWidth - padL - padR;
+          var H = visual.clientHeight - padT - padB;
+          var iw = base.naturalWidth;
+          var ih = base.naturalHeight;
+          if (!W || !H || !iw || !ih) return;
+
+          var scale = Math.max(W / iw, H / ih);
+          var w1 = iw * scale;
+          var h1 = ih * scale;
+          var ox = (W - w1) * 0.5;
+          var oy = (H - h1) * 0.5;
+          if (h1 > H) {
+            oy -= (h1 - H) * 0.14;
+          }
+
+          cover.style.left = ox + padL + "px";
+          cover.style.top = oy + padT + "px";
+          cover.style.width = w1 + "px";
+          cover.style.height = h1 + "px";
+        }
+
+        function bindCoverLayout() {
+          if (!visual || !base) return;
+          base.addEventListener("load", layoutCover);
+          if (base.complete && base.naturalWidth) layoutCover();
+          if (typeof ResizeObserver !== "undefined") {
+            var ro = new ResizeObserver(layoutCover);
+            ro.observe(visual);
+          } else {
+            window.addEventListener("resize", layoutCover);
+          }
+          window.addEventListener("orientationchange", function () {
+            requestAnimationFrame(layoutCover);
+          });
+          if (mobileCoverMq.addEventListener) {
+            mobileCoverMq.addEventListener("change", function () {
+              requestAnimationFrame(layoutCover);
+            });
+          } else if (mobileCoverMq.addListener) {
+            mobileCoverMq.addListener(layoutCover);
+          }
+        }
+
+        function applyVisualAssets(isDark) {
+          if (!base || !frame) return;
+          var a = isDark ? ASSETS.dark : ASSETS.light;
+          if (base.getAttribute("src") !== a.base) base.src = a.base;
+          if (frame.getAttribute("src") !== a.frame) frame.src = a.frame;
+        }
+
+        function setTheme(isDark) {
+          var root = document.documentElement;
+          if (isDark) root.setAttribute("data-theme", "dark");
+          else root.removeAttribute("data-theme");
+          try {
+            localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+          } catch (e) {}
+
+          applyVisualAssets(isDark);
+
+          if (toggle) {
+            toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+            toggle.setAttribute(
+              "aria-label",
+              isDark ? "Enable light mode" : "Enable dark mode"
+            );
+          }
+        }
+
+        bindCoverLayout();
+        if (toggle) {
+          var initialDark =
+            document.documentElement.getAttribute("data-theme") === "dark";
+          setTheme(initialDark);
+
+          toggle.addEventListener("click", function () {
+            var darkNow =
+              document.documentElement.getAttribute("data-theme") === "dark";
+            setTheme(!darkNow);
+          });
+        } else {
+          applyVisualAssets(
+            document.documentElement.getAttribute("data-theme") === "dark"
+          );
+        }
+      })();
+
+      (function () {
+        var nav = document.getElementById("scroll-progress");
+        if (!nav) return;
+
+        var items = nav.querySelectorAll(".scroll-progress__item");
+        var sections = document.querySelectorAll(".project-panel");
+        if (!items.length || !sections.length) return;
+
+        var ticking = false;
+
+        function setActive(index) {
+          if (index < 0) index = 0;
+          if (index >= items.length) index = items.length - 1;
+          items.forEach(function (btn, j) {
+            var on = j === index;
+            btn.classList.toggle("is-active", on);
+            btn.setAttribute("aria-current", on ? "true" : "false");
+          });
+        }
+
+        function computeActive() {
+          var vh = window.innerHeight;
+          var bandMid = vh * 0.42;
+          var bandHalf = vh * 0.18;
+          var bandTop = bandMid - bandHalf;
+          var bandBottom = bandMid + bandHalf;
+          var bestI = 0;
+          var bestScore = -1;
+
+          for (var i = 0; i < sections.length; i++) {
+            var r = sections[i].getBoundingClientRect();
+            var overlap = Math.max(
+              0,
+              Math.min(r.bottom, bandBottom) - Math.max(r.top, bandTop)
+            );
+            var visible = Math.max(
+              0,
+              Math.min(r.bottom, vh) - Math.max(r.top, 0)
+            );
+            var score = overlap * 2 + visible * 0.12;
+            if (r.top <= bandMid && r.bottom >= bandMid) score += 0.5;
+            if (score > bestScore) {
+              bestScore = score;
+              bestI = i;
+            }
+          }
+
+          setActive(bestI);
+        }
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            ticking = false;
+            computeActive();
+          });
+        }
+
+        items.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var sel = btn.getAttribute("data-target");
+            var el = sel && document.querySelector(sel);
+            if (!el) return;
+            if (window.lenis) {
+              var opts = window.lenisScrollToOptions || {};
+              window.lenis.scrollTo(el, {
+                offset: 0,
+                duration: opts.duration || 1.55,
+                easing: opts.easing,
+              });
+            } else {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll, { passive: true });
+        computeActive();
+      })();
+    </script>
+  </body>
+</html>

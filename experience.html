@@ -1,0 +1,3272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Experience — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://api.iconify.design" crossorigin />
+    <link rel="prefetch" href="project.html" as="document" />
+    <link rel="prefetch" href="research.html" as="document" />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #eceaed;
+        --text: #1a1a1a;
+        --muted: #5c5c5c;
+        --border: #e0dce1;
+        --accent: #2563eb;
+        --link-underline: rgba(26, 26, 26, 0.22);
+        --progress-line: rgba(26, 26, 26, 0.22);
+        --progress-line-hover: rgba(26, 26, 26, 0.38);
+        --chrome-bg: rgba(255, 255, 255, 0.52);
+        --chrome-border: rgba(210, 206, 214, 0.65);
+        --chrome-border-hover: rgba(180, 174, 186, 0.85);
+        --chrome-inset: rgba(255, 255, 255, 0.72);
+        --chrome-shadow: 0 2px 5px rgba(26, 26, 26, 0.05),
+          0 10px 32px rgba(26, 26, 26, 0.08);
+        --chrome-shadow-hover: 0 4px 12px rgba(26, 26, 26, 0.07),
+          0 18px 40px rgba(26, 26, 26, 0.11);
+        --chrome-theme-glow: rgba(37, 99, 235, 0.22);
+        --timeline-line: color-mix(
+          in srgb,
+          var(--border) 62%,
+          var(--progress-line) 38%
+        );
+        --timeline-line-mid: color-mix(
+          in srgb,
+          var(--progress-line) 48%,
+          var(--muted) 52%
+        );
+        --timeline-node-ring: color-mix(
+          in srgb,
+          var(--muted) 42%,
+          var(--border) 58%
+        );
+      }
+
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #141416;
+        --text: #f4f4f5;
+        --muted: #a1a1aa;
+        --border: #2e2e32;
+        --accent: #60a5fa;
+        --link-underline: rgba(244, 244, 245, 0.28);
+        --progress-line: rgba(255, 255, 255, 0.2);
+        --progress-line-hover: rgba(255, 255, 255, 0.4);
+        --chrome-bg: rgba(38, 38, 42, 0.55);
+        --chrome-border: rgba(255, 255, 255, 0.1);
+        --chrome-border-hover: rgba(255, 255, 255, 0.18);
+        --chrome-inset: rgba(255, 255, 255, 0.08);
+        --chrome-shadow: 0 2px 6px rgba(0, 0, 0, 0.35),
+          0 12px 36px rgba(0, 0, 0, 0.28);
+        --chrome-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.4),
+          0 20px 48px rgba(0, 0, 0, 0.3);
+        --chrome-theme-glow: rgba(96, 165, 250, 0.28);
+        --timeline-line: color-mix(
+          in srgb,
+          var(--border) 55%,
+          var(--progress-line) 45%
+        );
+        --timeline-line-mid: color-mix(
+          in srgb,
+          var(--progress-line) 50%,
+          var(--muted) 50%
+        );
+        --timeline-node-ring: color-mix(
+          in srgb,
+          var(--muted) 48%,
+          var(--border) 52%
+        );
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @view-transition {
+        navigation: auto;
+      }
+
+      @keyframes portfolio-phase-out {
+        from {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          opacity: 0;
+          transform: translate3d(0, -0.375rem, 0);
+        }
+      }
+
+      @keyframes portfolio-phase-in {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 0.625rem, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      ::view-transition-old(root) {
+        animation: portfolio-phase-out 0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+        z-index: 1;
+      }
+
+      ::view-transition-new(root) {
+        animation: portfolio-phase-in 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+        z-index: 2;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        @keyframes portfolio-phase-out-rm {
+          to {
+            opacity: 0;
+          }
+        }
+
+        @keyframes portfolio-phase-in-rm {
+          from {
+            opacity: 0;
+          }
+        }
+
+        ::view-transition-old(root) {
+          animation: portfolio-phase-out-rm 0.12s ease-out both;
+        }
+
+        ::view-transition-new(root) {
+          animation: portfolio-phase-in-rm 0.22s ease-out 0.04s both;
+        }
+      }
+
+      html.lenis {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        font-family: "DM Sans", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .experience-layout {
+        min-height: 100vh;
+        min-height: 100dvh;
+        background: var(--bg);
+        position: relative;
+      }
+
+      /* Faint “days to look back on” in the margin — background typography, no panel chrome */
+      .experience-days {
+        position: fixed;
+        z-index: 1;
+        top: 50%;
+        /* Farther from the right edge so the block sits closer to the main column */
+        right: max(
+          17rem,
+          calc(22vw + 7rem),
+          calc(env(safe-area-inset-right, 0px) + 14rem)
+        );
+        transform: translateY(-50%);
+        width: min(
+          16.25rem,
+          calc(
+            100vw - 8.5rem - env(safe-area-inset-right, 0px) - 11rem
+          )
+        );
+        max-height: min(70vh, 30rem);
+        overflow-x: hidden;
+        pointer-events: none;
+      }
+
+      .experience-days__sticky {
+        pointer-events: none;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .experience-days__eyebrow {
+        margin: 0 0 0.75rem;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: color-mix(in srgb, var(--muted) 68%, transparent);
+      }
+
+      .experience-days__viewport {
+        display: grid;
+        min-height: 9.5rem;
+      }
+
+      .experience-days__panel {
+        grid-area: 1 / 1;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateZ(0);
+        transition:
+          opacity 0.45s ease,
+          visibility 0.45s ease;
+      }
+
+      .experience-days__panel.is-active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+      }
+
+      .experience-days__role {
+        margin: 0 0 0.85rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: 0.02em;
+        color: color-mix(in srgb, var(--muted) 82%, var(--text) 18%);
+      }
+
+      .experience-days__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        max-height: min(46vh, 19rem);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
+      }
+
+      .experience-days__day {
+        display: grid;
+        grid-template-columns: 3.1rem 1fr;
+        gap: 0.4rem 0.55rem;
+        align-items: start;
+        padding: 0;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        will-change: clip-path;
+      }
+
+      .experience-days__date {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        line-height: 1.45;
+        color: color-mix(in srgb, var(--muted) 55%, transparent);
+      }
+
+      .experience-days__note {
+        font-size: 0.78rem;
+        line-height: 1.5;
+        font-weight: 450;
+        margin: 0;
+        color: color-mix(in srgb, var(--muted) 88%, var(--text) 12%);
+      }
+
+      /* Below this width the rail overlaps the vertical nav + theme — hide it cleanly */
+      @media (max-width: 1450px) {
+        .experience-days {
+          display: none !important;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .experience-days__panel {
+          transition: none;
+        }
+
+        .experience-days__day,
+        .experience-days__role {
+          will-change: auto;
+        }
+      }
+
+      .experience-main {
+        position: relative;
+        z-index: 2;
+        max-width: 44rem;
+        margin: 0 auto;
+        padding: clamp(4rem, 9vw, 5.5rem) clamp(1.5rem, 5vw, 2.5rem)
+          clamp(4rem, 12vh, 6rem);
+        padding-right: clamp(2rem, 6vw, 2.5rem);
+      }
+
+      @media (min-width: 769px) {
+        .experience-main {
+          /*
+           * Whole column (title + timeline): offset left of viewport center (~4rem).
+           */
+          --experience-nudge: 30rem;
+          margin-left: max(
+            1.5rem,
+            calc(50vw - 22rem - var(--experience-nudge))
+          );
+          margin-right: auto;
+          padding-right: clamp(3.25rem, 7.5vw, 5.5rem);
+        }
+      }
+
+      .experience-main__intro {
+        margin: 0 auto clamp(2rem, 5vh, 3rem);
+        max-width: 32rem;
+        text-align: center;
+      }
+
+      .experience-main__eyebrow {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.65rem;
+      }
+
+      .experience-main__intro h1 {
+        margin: 0 0 0.85rem;
+        font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.12;
+      }
+
+      .experience-main__lede {
+        margin: 0;
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      /* —— Timeline —— */
+      .timeline {
+        position: relative;
+        padding: 0.35rem 0 clamp(2.75rem, 9vh, 4.5rem);
+      }
+
+      .timeline__spine {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        transform: translateX(-50%);
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--timeline-line) 35%, transparent) 0%,
+          var(--timeline-line) 5%,
+          var(--timeline-line-mid) 50%,
+          var(--timeline-line) 95%,
+          color-mix(in srgb, var(--timeline-line) 40%, transparent) 100%
+        );
+        border-radius: 999px;
+        z-index: 0;
+        box-shadow: 0 0 10px color-mix(in srgb, var(--progress-line) 22%, transparent);
+      }
+
+      .timeline__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .timeline__event {
+        position: relative;
+        margin-bottom: clamp(2.75rem, 6vh, 3.75rem);
+      }
+
+      .timeline__event:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 1.35rem;
+        align-items: start;
+      }
+
+      .timeline__takeaway {
+        margin: 0;
+        max-width: 16.75rem;
+        padding: 0;
+        border: none;
+        align-self: center;
+      }
+
+      .timeline__takeaway p {
+        margin: 0;
+        font-size: clamp(0.9375rem, 2.1vw, 1.0625rem);
+        line-height: 1.55;
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        color: var(--text);
+      }
+
+      .timeline__takeaway p::before {
+        content: "\201C";
+        color: var(--muted);
+        font-weight: 600;
+        margin-right: 0.08em;
+      }
+
+      .timeline__takeaway p::after {
+        content: "\201D";
+        color: var(--muted);
+        font-weight: 600;
+        margin-left: 0.05em;
+      }
+
+      .timeline__event--right .timeline__takeaway {
+        justify-self: end;
+        text-align: right;
+      }
+
+      .timeline__event--right .timeline__takeaway p {
+        text-align: right;
+      }
+
+      .timeline__event--left .timeline__takeaway {
+        justify-self: start;
+        text-align: left;
+      }
+
+      .timeline__node {
+        position: absolute;
+        left: 50%;
+        top: 0.32rem;
+        width: 0.72rem;
+        height: 0.72rem;
+        margin-left: -0.36rem;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 2px solid var(--timeline-node-ring);
+        z-index: 2;
+        box-shadow:
+          0 0 0 3px color-mix(in srgb, var(--bg) 92%, transparent),
+          0 1px 3px color-mix(in srgb, var(--progress-line) 85%, transparent);
+      }
+
+      .timeline__stem {
+        position: absolute;
+        top: calc(0.32rem + 0.36rem - 1px);
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--progress-line),
+          color-mix(in srgb, var(--progress-line) 40%, var(--border) 60%)
+        );
+        z-index: 1;
+        border-radius: 999px;
+        opacity: 0.95;
+      }
+
+      .timeline__event--right .timeline__stem {
+        left: 50%;
+        width: calc(50% - 1.85rem);
+        margin-left: 0.4rem;
+        background: linear-gradient(
+          90deg,
+          color-mix(in srgb, var(--progress-line) 40%, var(--border) 60%),
+          var(--progress-line)
+        );
+      }
+
+      .timeline__event--left .timeline__stem {
+        right: 50%;
+        width: calc(50% - 1.85rem);
+        margin-right: 0.4rem;
+        left: auto;
+        background: linear-gradient(
+          270deg,
+          color-mix(in srgb, var(--progress-line) 40%, var(--border) 60%),
+          var(--progress-line)
+        );
+      }
+
+      .timeline__card {
+        max-width: 19.5rem;
+      }
+
+      .timeline__event--right .timeline__card {
+        justify-self: start;
+        padding-left: 0.25rem;
+      }
+
+      .timeline__event--left .timeline__card {
+        justify-self: end;
+        text-align: right;
+        padding-right: 0.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .timeline__period {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        position: relative;
+        top: -0.6rem;
+        margin: 0 0 0.65rem;
+      }
+
+      .timeline__title {
+        margin: 0 0 0.6rem;
+        font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        color: var(--text);
+      }
+
+      .timeline__text {
+        margin: 0 0 1rem;
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .timeline__impact-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.45rem;
+      }
+
+      .timeline__impact {
+        margin: 0 0 1rem;
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        color: var(--muted);
+      }
+
+      .timeline__event--left .timeline__text {
+        text-align: right;
+      }
+
+      .timeline__event--left .timeline__impact-label,
+      .timeline__event--left .timeline__impact {
+        text-align: right;
+      }
+
+      .timeline__meta {
+        margin: 0 0 1.05rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .timeline__meta-label {
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.3rem;
+      }
+
+      /* Icon rows (same pattern as project meta stack) */
+      .timeline__meta .stack-icons {
+        list-style: none;
+        margin: 0.2rem 0 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem 0.95rem;
+        align-items: center;
+      }
+
+      .timeline__meta .stack-icons li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        min-height: 1.35rem;
+      }
+
+      .timeline__meta .stack-icon {
+        width: 1.125rem;
+        height: 1.125rem;
+        flex-shrink: 0;
+        display: block;
+        object-fit: contain;
+        filter: grayscale(1) contrast(1.05);
+        opacity: 0.9;
+      }
+
+      .timeline__meta .stack-icon-svg {
+        width: 1.125rem;
+        height: 1.125rem;
+        flex-shrink: 0;
+        display: block;
+        overflow: visible;
+        color: var(--muted);
+        filter: grayscale(1) contrast(1.05);
+        opacity: 0.9;
+      }
+
+      .timeline__meta .stack-icons__label {
+        font-size: 0.8125rem;
+        line-height: 1.3;
+        color: var(--muted);
+      }
+
+      .timeline__event--left .timeline__meta .stack-icons {
+        justify-content: flex-end;
+      }
+
+      html[data-theme="dark"] .timeline__meta .stack-icon,
+      html[data-theme="dark"] .timeline__meta .stack-icon-svg {
+        filter: grayscale(1) contrast(1.05) invert(1) brightness(1.12);
+        opacity: 0.88;
+      }
+
+      .timeline__event--left .timeline__meta {
+        text-align: right;
+      }
+
+      @media (min-width: 769px) {
+        .timeline {
+          --timeline-axis: 50%;
+        }
+
+        .timeline__spine {
+          left: var(--timeline-axis);
+        }
+
+        .timeline__node {
+          left: var(--timeline-axis);
+        }
+
+        .timeline__event--right .timeline__stem {
+          left: var(--timeline-axis);
+          width: calc(100% - var(--timeline-axis) - 1.85rem);
+        }
+
+        .timeline__event--left .timeline__stem {
+          right: calc(100% - var(--timeline-axis));
+          width: calc(var(--timeline-axis) - 1.85rem);
+        }
+      }
+
+      .timeline__more {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid var(--link-underline);
+        padding-bottom: 0.2rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        transition: border-color 0.2s ease;
+      }
+
+      .timeline__more:hover {
+        border-bottom-color: var(--progress-line-hover);
+        color: var(--text);
+      }
+
+      .timeline__more:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+        border-bottom-color: transparent;
+      }
+
+      .timeline__more-icon {
+        width: 1.05em;
+        height: 1.05em;
+        flex-shrink: 0;
+        display: block;
+        object-fit: contain;
+        opacity: 0.55;
+        filter: grayscale(1) contrast(1.05);
+        transition: opacity 0.2s ease;
+      }
+
+      .timeline__more:hover .timeline__more-icon {
+        opacity: 0.75;
+      }
+
+      html[data-theme="dark"] .timeline__more-icon {
+        filter: grayscale(1) contrast(1.05) invert(1) brightness(1.12);
+        opacity: 0.72;
+      }
+
+      html[data-theme="dark"] .timeline__more:hover .timeline__more-icon {
+        opacity: 0.88;
+      }
+
+      /* Site nav — desktop: vertical right */
+      .site-nav {
+        position: fixed;
+        z-index: 9998;
+        right: max(1.1rem, env(safe-area-inset-right, 0px));
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .site-nav__list {
+        list-style: none;
+        margin: 0;
+        padding: 0.35rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1.4rem;
+      }
+
+      .site-nav__item {
+        margin: 0;
+        padding: 0;
+      }
+
+      .site-nav__link {
+        pointer-events: auto;
+        display: inline-block;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--muted);
+        border-right: 2px solid transparent;
+        padding: 0.2rem 0.55rem 0.2rem 0;
+        margin-right: -2px;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .site-nav__link:hover {
+        color: var(--text);
+      }
+
+      .site-nav__link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .site-nav__link[aria-current="page"] {
+        color: var(--text);
+        font-weight: 700;
+        border-right-color: var(--text);
+      }
+
+      .site-nav__item--theme {
+        pointer-events: auto;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .site-nav__item--theme .top-actions__theme {
+        vertical-align: middle;
+      }
+
+      @media (min-width: 769px) {
+        .site-nav__item--theme {
+          margin-top: 1.35rem;
+          padding-top: 1.15rem;
+          border-top: 1px solid
+            color-mix(in srgb, var(--border) 72%, transparent);
+          align-self: flex-end;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .experience-main {
+          padding-top: calc(3.5rem + env(safe-area-inset-top, 0px));
+          padding-left: clamp(1.25rem, 4vw, 2rem);
+          padding-right: clamp(1.25rem, 4vw, 2rem);
+        }
+
+        .site-nav {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: auto !important;
+          transform: none !important;
+          max-width: none;
+          padding: calc(0.55rem + env(safe-area-inset-top, 0px))
+            max(4.15rem, calc(env(safe-area-inset-right, 0px) + 3.55rem))
+            0.65rem max(0.85rem, env(safe-area-inset-left, 0px));
+          background: color-mix(in srgb, var(--bg) 88%, #ffffff 12%);
+          border-bottom: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.55) inset,
+            0 10px 36px rgba(26, 26, 26, 0.07);
+          backdrop-filter: blur(20px) saturate(1.08);
+          -webkit-backdrop-filter: blur(20px) saturate(1.08);
+          z-index: 10002;
+        }
+
+        html[data-theme="dark"] .site-nav {
+          background: color-mix(in srgb, var(--bg) 82%, #1f1f23 18%);
+          border-bottom-color: rgba(255, 255, 255, 0.1);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.07) inset,
+            0 12px 44px rgba(0, 0, 0, 0.48);
+        }
+
+        .site-nav__list {
+          width: 100%;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 0.45rem 0.85rem;
+        }
+
+        .site-nav__item--theme {
+          margin-left: auto;
+          margin-top: 0;
+          padding-top: 0;
+          border-top: none;
+          align-self: center;
+        }
+
+        .site-nav__item--theme .top-actions__theme {
+          width: 2.65rem;
+          height: 2.65rem;
+          border-radius: 11px;
+        }
+
+        .site-nav__item--theme .top-actions__theme-icon {
+          width: 1.35rem;
+          height: 1.35rem;
+        }
+
+        .site-nav__link {
+          font-size: 0.625rem;
+          padding: 0.2rem 0;
+          border-right: none;
+          border-bottom: 2px solid transparent;
+        }
+
+        .site-nav__link[aria-current="page"] {
+          border-right-color: transparent;
+          border-bottom-color: var(--text);
+        }
+
+        .timeline__spine {
+          left: 1.15rem;
+          transform: none;
+        }
+
+        .timeline__node {
+          left: 1.15rem;
+          margin-left: -0.36rem;
+        }
+
+        .timeline__stem {
+          display: none;
+        }
+
+        .timeline__event {
+          padding-left: 2.35rem;
+        }
+
+        .timeline__row {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+        }
+
+        .timeline__card {
+          order: 1;
+        }
+
+        .timeline__takeaway {
+          order: 2;
+          align-self: stretch;
+          max-width: none;
+          justify-self: stretch !important;
+          text-align: left !important;
+          margin-top: 0.15rem;
+          padding-top: 1.1rem;
+          border-top: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+        }
+
+        .timeline__takeaway p {
+          text-align: left !important;
+        }
+
+        .timeline__event--right .timeline__card,
+        .timeline__event--left .timeline__card {
+          justify-self: stretch;
+          max-width: none;
+          text-align: left;
+          padding-left: 0;
+          padding-right: 0;
+          align-items: flex-start;
+        }
+
+        .timeline__event--left .timeline__text {
+          text-align: left;
+        }
+
+        .timeline__event--left .timeline__impact-label,
+        .timeline__event--left .timeline__impact {
+          text-align: left;
+        }
+
+        .timeline__event--left .timeline__meta {
+          text-align: left;
+        }
+
+        .timeline__event--left .timeline__meta .stack-icons {
+          justify-content: flex-start;
+        }
+
+        .top-actions {
+          top: calc(0.48rem + env(safe-area-inset-top, 0px));
+          right: max(0.65rem, env(safe-area-inset-right, 0px));
+          z-index: 10003;
+        }
+
+        .top-actions__assistant {
+          min-height: 2.75rem;
+          padding: 0.35rem 0.15rem;
+          display: inline-flex;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 768px) and (prefers-reduced-transparency: reduce) {
+        .site-nav {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          background: var(--bg);
+        }
+
+        html[data-theme="dark"] .site-nav {
+          background: var(--bg);
+        }
+      }
+
+      .top-actions {
+        position: fixed;
+        z-index: 10001;
+        top: 1rem;
+        right: max(1rem, env(safe-area-inset-right, 0px));
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.35rem;
+        padding: 0.15rem 0.2rem;
+      }
+
+      .top-actions__assistant {
+        margin: 0;
+        padding: 0.4rem 0.1rem;
+        font: inherit;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: none;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
+        text-underline-offset: 0.38em;
+        text-decoration-thickness: 1px;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          color 0.2s ease,
+          text-decoration-color 0.2s ease;
+      }
+
+      .top-actions__assistant:hover {
+        color: var(--text);
+        text-decoration-color: color-mix(in srgb, var(--text) 55%, transparent);
+      }
+
+      .top-actions__assistant:focus {
+        outline: none;
+      }
+
+      .top-actions__assistant:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .top-actions__theme {
+        box-sizing: border-box;
+        position: relative;
+        width: 2.85rem;
+        height: 2.85rem;
+        margin: 0;
+        padding: 0;
+        border: 1px solid var(--chrome-border, rgba(210, 206, 214, 0.65));
+        border-radius: 12px;
+        background: var(--chrome-bg, rgba(255, 255, 255, 0.52));
+        backdrop-filter: blur(18px) saturate(1.12);
+        -webkit-backdrop-filter: blur(18px) saturate(1.12);
+        box-shadow:
+          inset 0 1px 0 var(--chrome-inset, rgba(255, 255, 255, 0.72)),
+          var(
+            --chrome-shadow,
+            0 2px 5px rgba(26, 26, 26, 0.05),
+            0 10px 32px rgba(26, 26, 26, 0.08)
+          );
+        cursor: pointer;
+        color: var(--muted);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.24s ease,
+          border-color 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      html[data-theme="dark"] .top-actions__theme {
+        border-color: rgba(255, 255, 255, 0.1);
+        background: rgba(38, 38, 42, 0.55);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.08),
+          0 2px 6px rgba(0, 0, 0, 0.35),
+          0 12px 36px rgba(0, 0, 0, 0.28);
+      }
+
+      .top-actions__theme:hover {
+        color: var(--text);
+        border-color: var(--chrome-border-hover, #c8c4ca);
+        transform: translateY(-2px);
+      }
+
+      .top-actions__theme:active {
+        transform: translateY(0) scale(0.97);
+        transition-duration: 0.1s;
+      }
+
+      .top-actions__theme:focus {
+        outline: none;
+      }
+
+      .top-actions__theme:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .top-actions__theme-icon {
+        width: 1.35rem;
+        height: 1.35rem;
+        flex-shrink: 0;
+        display: none;
+        filter: grayscale(1);
+        opacity: 0.92;
+      }
+
+      /* Icon follows button state so mobile always matches the active theme */
+      #theme-toggle[aria-pressed="true"] .top-actions__theme-icon--moon {
+        display: none;
+      }
+
+      #theme-toggle[aria-pressed="true"] .top-actions__theme-icon--sun {
+        display: block;
+      }
+
+      #theme-toggle:not([aria-pressed="true"]) .top-actions__theme-icon--moon {
+        display: block;
+      }
+
+      #theme-toggle:not([aria-pressed="true"]) .top-actions__theme-icon--sun {
+        display: none;
+      }
+
+      .top-actions__theme[aria-pressed="true"] {
+        background: linear-gradient(155deg, #232328 0%, #141418 100%);
+        color: #c4c4c8;
+        border-color: rgba(255, 255, 255, 0.14);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.12),
+          0 6px 24px var(--chrome-theme-glow),
+          0 4px 14px rgba(0, 0, 0, 0.18);
+      }
+
+      .top-actions__theme[aria-pressed="true"] .top-actions__theme-icon {
+        filter: grayscale(1) brightness(1.15);
+        opacity: 1;
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"] {
+        background: linear-gradient(155deg, #fafafa 0%, #e8e8ec 100%);
+        color: #52525b;
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          0 6px 24px var(--chrome-theme-glow),
+          0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"] .top-actions__theme-icon {
+        filter: grayscale(1) brightness(0.55);
+        opacity: 0.95;
+      }
+    </style>
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("portfolio-theme") === "dark")
+            document.documentElement.setAttribute("data-theme", "dark");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="top-actions" role="toolbar" aria-label="Page tools">
+      <button
+        type="button"
+        class="top-actions__assistant"
+        id="assistant-btn"
+        aria-label="Open assistant"
+      >
+        Assistant
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Site">
+      <ul class="site-nav__list">
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="me.html">Me</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="about.html">About</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="project.html">Projects</a>
+        </li>
+        <li class="site-nav__item">
+          <a
+            class="site-nav__link"
+            href="experience.html"
+            aria-current="page"
+            >Experience</a
+          >
+        </li>
+        <li class="site-nav__item">
+          <a
+            class="site-nav__link"
+            href="research.html"
+            aria-label="Research &amp; writing"
+            >Research &amp; writing</a
+          >
+        </li>
+        <li class="site-nav__item site-nav__item--theme">
+          <button
+            type="button"
+            class="top-actions__theme"
+            id="theme-toggle"
+            aria-pressed="false"
+            aria-label="Enable dark mode"
+          >
+            <svg
+              class="top-actions__theme-icon top-actions__theme-icon--moon"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg
+              class="top-actions__theme-icon top-actions__theme-icon--sun"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <script>
+            (function () {
+              var t = document.getElementById("theme-toggle");
+              if (!t) return;
+              var dark =
+                document.documentElement.getAttribute("data-theme") === "dark";
+              t.setAttribute("aria-pressed", dark ? "true" : "false");
+              t.setAttribute(
+                "aria-label",
+                dark ? "Enable light mode" : "Enable dark mode"
+              );
+            })();
+          </script>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="experience-layout">
+      <main class="experience-main" id="main">
+        <header class="experience-main__intro">
+          <p class="experience-main__eyebrow">Experience</p>
+          <h1>Roles and chapters</h1>
+          <p class="experience-main__lede">
+            A linear timeline—each stop is a role or stretch of work, with
+            detail on a separate page when you’re ready to go deeper.
+          </p>
+        </header>
+
+        <div class="timeline">
+          <div class="timeline__spine" aria-hidden="true"></div>
+          <ol class="timeline__list">
+            <li class="timeline__event timeline__event--right">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <blockquote class="timeline__takeaway" cite="#lead-product">
+                  <p>
+                    Clarity in the handoff mattered as much as the
+                    pixels—when flows and specs left nothing fuzzy to fight
+                    over, the build got predictable.
+                  </p>
+                </blockquote>
+                <div class="timeline__card">
+                <p class="timeline__period">Mar 2024 — Present</p>
+                <h2 class="timeline__title">Lead product design</h2>
+                <p class="timeline__text">
+                  End-to-end craft for a financial product: flows, systems, and
+                  launch quality with compliance in the loop.
+                </p>
+                <p class="timeline__impact-label">Impact</p>
+                <p class="timeline__impact">
+                  Fewer launch fire-drills and rework loops; stakeholders aligned
+                  on shared flows and specs so decisions stuck through build and
+                  compliance review.
+                </p>
+                <div class="timeline__meta">
+                  <div class="timeline__meta-block">
+                    <h3 class="timeline__meta-label">Soft skills</h3>
+                    <ul class="stack-icons" aria-label="Soft skills">
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:presentation.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Facilitation</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:file-document-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Narrative decks</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:account-group-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Stakeholders</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:forum-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Design crits</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:email-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Async comms</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="timeline__meta-block">
+                    <h3 class="timeline__meta-label">Stack</h3>
+                    <ul class="stack-icons" aria-label="Stack">
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Figma</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:cellphone.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Prototyping</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:layers-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Handoff</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:linear.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Linear</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:html5.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">HTML</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:css3.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">CSS</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <a class="timeline__more" href="experience-lumina.html">
+                  Learn more about this experience<img
+                    class="timeline__more-icon"
+                    src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                    alt=""
+                    width="20"
+                    height="20"
+                    aria-hidden="true"
+                    decoding="async"
+                  />
+                </a>
+                </div>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--left">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <div class="timeline__card">
+                <p class="timeline__period">Jun 2021 — Feb 2024</p>
+                <h2 class="timeline__title">Design systems &amp; brand</h2>
+                <p class="timeline__text">
+                  Built component libraries and cross-platform guidelines;
+                  partnered with engineering on tokens and accessibility.
+                </p>
+                <p class="timeline__impact-label">Impact</p>
+                <p class="timeline__impact">
+                  System usage spread beyond the core squad; new screens shipped
+                  faster with fewer one-off styles and rare a11y regressions in
+                  QA.
+                </p>
+                <div class="timeline__meta">
+                  <div class="timeline__meta-block">
+                    <h3 class="timeline__meta-label">Soft skills</h3>
+                    <ul class="stack-icons" aria-label="Soft skills">
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:sitemap.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Systems thinking</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:book-open-variant.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Documentation</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:code-tags.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Pairing with eng</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:accessibility.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Accessibility</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="timeline__meta-block">
+                    <h3 class="timeline__meta-label">Stack</h3>
+                    <ul class="stack-icons" aria-label="Stack">
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:storybook.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Storybook</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:react.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">React</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:palette-swatch-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Tokens</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:css3.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">CSS</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:shield-check-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">QA &amp; a11y</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <a class="timeline__more" href="experience-systems.html">
+                  Learn more about this experience<img
+                    class="timeline__more-icon"
+                    src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                    alt=""
+                    width="20"
+                    height="20"
+                    aria-hidden="true"
+                    decoding="async"
+                  />
+                </a>
+                </div>
+                <blockquote class="timeline__takeaway" cite="#design-systems">
+                  <p>
+                    If the library doesn&apos;t survive contact with another
+                    team, it&apos;s just a neat folder—adoption was the real
+                    product.
+                  </p>
+                </blockquote>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--right">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <blockquote class="timeline__takeaway" cite="#freelance">
+                  <p>
+                    Small scopes and fast loops beat big promises—people trusted
+                    the work when the timeline matched the words.
+                  </p>
+                </blockquote>
+                <div class="timeline__card">
+                <p class="timeline__period">Sep 2018 — May 2021</p>
+                <h2 class="timeline__title">Freelance &amp; studio</h2>
+                <p class="timeline__text">
+                  Editorial sites, small product MVPs, and identity work for
+                  studios and startups—fast feedback and tight scopes.
+                </p>
+                <p class="timeline__impact-label">Impact</p>
+                <p class="timeline__impact">
+                  Clients shipped on agreed dates with clearer briefs; repeat
+                  engagements and referrals replaced most cold outreach.
+                </p>
+                <div class="timeline__meta">
+                  <div class="timeline__meta-block">
+                    <h3 class="timeline__meta-label">Soft skills</h3>
+                    <ul class="stack-icons" aria-label="Soft skills">
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:handshake-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Client rapport</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:calendar-month-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Scoping</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:cloud-upload-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Shipping often</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:comment-text-outline.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Feedback</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="timeline__meta-block">
+                    <h3 class="timeline__meta-label">Stack</h3>
+                    <ul class="stack-icons" aria-label="Stack">
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:webflow.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Webflow</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:wordpress.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">WordPress</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:adobe.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Adobe</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:html5.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">HTML</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:css3.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">CSS</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/simple-icons:javascript.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">JS</span>
+                      </li>
+                      <li>
+                        <img
+                          class="stack-icon"
+                          src="https://api.iconify.design/mdi:dns.svg?color=%235c5c5c&width=18&height=18"
+                          alt=""
+                          width="18"
+                          height="18"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span class="stack-icons__label">Hosting &amp; DNS</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <a class="timeline__more" href="experience-freelance.html">
+                  Learn more about this experience<img
+                    class="timeline__more-icon"
+                    src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                    alt=""
+                    width="20"
+                    height="20"
+                    aria-hidden="true"
+                    decoding="async"
+                  />
+                </a>
+                </div>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--left">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <div class="timeline__card">
+                  <p class="timeline__period">Jan 2017 — Aug 2018</p>
+                  <h2 class="timeline__title">
+                    Marketing &amp; product design (in-house)
+                  </h2>
+                  <p class="timeline__text">
+                    Landing pages, campaign creatives, and light product support
+                    for a growing SaaS—bridging brand and conversion goals.
+                  </p>
+                  <p class="timeline__impact-label">Impact</p>
+                  <p class="timeline__impact">
+                    Campaign and landing tests shipped faster with reusable
+                    modules; MQL-to-trial clarity improved with simpler primary
+                    flows.
+                  </p>
+                  <div class="timeline__meta">
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Soft skills</h3>
+                      <ul class="stack-icons" aria-label="Soft skills">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:bullhorn-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Stakeholder sync</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:chart-line.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Test &amp; learn</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:clock-fast.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Fast iteration</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:image-edit-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Visual craft</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Stack</h3>
+                      <ul class="stack-icons" aria-label="Stack">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Figma</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:googleanalytics.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Analytics</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:html5.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">HTML</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:mailchimp.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Email tools</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a class="timeline__more" href="experience-in-house-marketing.html">
+                    Learn more about this experience<img
+                      class="timeline__more-icon"
+                      src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                      alt=""
+                      width="20"
+                      height="20"
+                      aria-hidden="true"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+                <blockquote class="timeline__takeaway" cite="#in-house-marketing">
+                  <p>
+                    When marketing and product shared one story, we stopped
+                    designing the same hero three different ways.
+                  </p>
+                </blockquote>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--right">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <blockquote class="timeline__takeaway" cite="#ux-research">
+                  <p>
+                    The best decks weren&apos;t the longest—they were the ones
+                    a PM could act on Monday morning.
+                  </p>
+                </blockquote>
+                <div class="timeline__card">
+                  <p class="timeline__period">Mar 2015 — Dec 2016</p>
+                  <h2 class="timeline__title">UX research &amp; strategy</h2>
+                  <p class="timeline__text">
+                    Mixed-methods studies, journey maps, and workshop readouts
+                    for B2B tools—turning interviews into roadmap bets.
+                  </p>
+                  <p class="timeline__impact-label">Impact</p>
+                  <p class="timeline__impact">
+                    Leadership retired two low-confidence bets; one greenfield
+                    idea pivoted after a tight concept test, saving months of dev.
+                  </p>
+                  <div class="timeline__meta">
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Soft skills</h3>
+                      <ul class="stack-icons" aria-label="Soft skills">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:microphone-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Moderation</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:map-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Synthesis</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:account-tie-voice.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Exec storytelling</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:notebook-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Field notes</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Stack</h3>
+                      <ul class="stack-icons" aria-label="Stack">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:miro.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Miro</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:table-large.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Sheets / tagging</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:googledocs.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Docs</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:video-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Remote sessions</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a class="timeline__more" href="experience-ux-research.html">
+                    Learn more about this experience<img
+                      class="timeline__more-icon"
+                      src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                      alt=""
+                      width="20"
+                      height="20"
+                      aria-hidden="true"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--left">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <div class="timeline__card">
+                  <p class="timeline__period">Sep 2013 — Feb 2015</p>
+                  <h2 class="timeline__title">Visual design &amp; brand support</h2>
+                  <p class="timeline__text">
+                    Identity extensions, deck templates, and digital ads for an
+                    agency bench—tight grids, typography, and print-to-screen handoff.
+                  </p>
+                  <p class="timeline__impact-label">Impact</p>
+                  <p class="timeline__impact">
+                    Retainer clients renewed with fewer revision rounds; brand
+                    guidelines cut passive-aggressive Slack about logo clearspace.
+                  </p>
+                  <div class="timeline__meta">
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Soft skills</h3>
+                      <ul class="stack-icons" aria-label="Soft skills">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:ruler-square.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Detail eye</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:format-paint.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Systems in Figma</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:printer-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Print prep</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:account-clock-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Deadline calm</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Stack</h3>
+                      <ul class="stack-icons" aria-label="Stack">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:adobeillustrator.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Illustrator</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:adobephotoshop.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Photoshop</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Figma</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:adobeindesign.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">InDesign</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a class="timeline__more" href="experience-visual-brand.html">
+                    Learn more about this experience<img
+                      class="timeline__more-icon"
+                      src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                      alt=""
+                      width="20"
+                      height="20"
+                      aria-hidden="true"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+                <blockquote class="timeline__takeaway" cite="#visual-brand">
+                  <p>
+                    Consistency isn&apos;t boring—it&apos;s the respect you show
+                    the person opening file twelve.
+                  </p>
+                </blockquote>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--right">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <blockquote class="timeline__takeaway" cite="#internship">
+                  <p>
+                    I learned the office wasn&apos;t judging sketches—they were
+                    judging whether I could listen.
+                  </p>
+                </blockquote>
+                <div class="timeline__card">
+                  <p class="timeline__period">Jun 2011 — Aug 2013</p>
+                  <h2 class="timeline__title">Product design internship</h2>
+                  <p class="timeline__text">
+                    Wireframes, usability notes, and visual polish on a consumer
+                    app team—shadowing seniors and owning small features end to end.
+                  </p>
+                  <p class="timeline__impact-label">Impact</p>
+                  <p class="timeline__impact">
+                    Two shipped tweaks lifted task completion in tests; the team
+                    invited a return offer after the summer cohort wrapped.
+                  </p>
+                  <div class="timeline__meta">
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Soft skills</h3>
+                      <ul class="stack-icons" aria-label="Soft skills">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:school-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Learning fast</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:ear-hearing.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Feedback hungry</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:timer-sand.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Time-boxing</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:human-greeting-variant.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Team etiquette</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Stack</h3>
+                      <ul class="stack-icons" aria-label="Stack">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:sketch.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Sketch</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:layers-triple.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Layer handoff</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:view-dashboard-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Wireframes</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:jira.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Jira</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a class="timeline__more" href="experience-internship.html">
+                    Learn more about this experience<img
+                      class="timeline__more-icon"
+                      src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                      alt=""
+                      width="20"
+                      height="20"
+                      aria-hidden="true"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--left">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <div class="timeline__card">
+                  <p class="timeline__period">Sep 2009 — May 2011</p>
+                  <h2 class="timeline__title">Student design lead</h2>
+                  <p class="timeline__text">
+                    Campus media lab: posters, event wayfinding, and simple sites
+                    for student orgs—volunteer crew, real deadlines, zero budget drama.
+                  </p>
+                  <p class="timeline__impact-label">Impact</p>
+                  <p class="timeline__impact">
+                    Annual conference attendance grew after a clearer sign system;
+                    org leaders asked for the &quot;lab crew&quot; by name the next year.
+                  </p>
+                  <div class="timeline__meta">
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Soft skills</h3>
+                      <ul class="stack-icons" aria-label="Soft skills">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:account-group.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Volunteer mgmt</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:ticket-confirmation-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Event ops</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:lightning-bolt-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Scrappy energy</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:cash-off.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Zero-brief wins</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Stack</h3>
+                      <ul class="stack-icons" aria-label="Stack">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:adobeillustrator.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Illustrator</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:wordpress.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">WordPress</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:html5.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">HTML/CSS</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:printer-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Print vendors</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a class="timeline__more" href="experience-student-lead.html">
+                    Learn more about this experience<img
+                      class="timeline__more-icon"
+                      src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                      alt=""
+                      width="20"
+                      height="20"
+                      aria-hidden="true"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+                <blockquote class="timeline__takeaway" cite="#student-lead">
+                  <p>
+                    Nobody cared if I was &quot;a designer&quot;—they cared if the
+                    signs pointed the right way at 8 a.m.
+                  </p>
+                </blockquote>
+              </div>
+            </li>
+            <li class="timeline__event timeline__event--right">
+              <span class="timeline__node" aria-hidden="true"></span>
+              <span class="timeline__stem" aria-hidden="true"></span>
+              <div class="timeline__row">
+                <blockquote class="timeline__takeaway" cite="#first-role">
+                  <p>
+                    My first honest job title was &quot;make it look like we know
+                    what we&apos;re doing&quot;—and that was enough curriculum.
+                  </p>
+                </blockquote>
+                <div class="timeline__card">
+                  <p class="timeline__period">Aug 2007 — Aug 2009</p>
+                  <h2 class="timeline__title">Junior graphic &amp; web assistant</h2>
+                  <p class="timeline__text">
+                    Small business bureau: flyers, mailers, and a PHP-era site
+                    refresh—learning production, Pantone, and client phone etiquette.
+                  </p>
+                  <p class="timeline__impact-label">Impact</p>
+                  <p class="timeline__impact">
+                    The refreshed brochure site doubled quote requests in six
+                    months; the owner let me own the next seasonal campaign solo.
+                  </p>
+                  <div class="timeline__meta">
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Soft skills</h3>
+                      <ul class="stack-icons" aria-label="Soft skills">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:phone-in-talk-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Client calls</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:folder-cog-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">File hygiene</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:rocket-launch-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Initiative</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:coffee-outline.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Stamina</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="timeline__meta-block">
+                      <h3 class="timeline__meta-label">Stack</h3>
+                      <ul class="stack-icons" aria-label="Stack">
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:adobephotoshop.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Photoshop</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:php.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">PHP templates</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/simple-icons:html5.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">HTML/CSS</span>
+                        </li>
+                        <li>
+                          <img
+                            class="stack-icon"
+                            src="https://api.iconify.design/mdi:file-pdf-box.svg?color=%235c5c5c&width=18&height=18"
+                            alt=""
+                            width="18"
+                            height="18"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <span class="stack-icons__label">Print PDFs</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <a class="timeline__more" href="experience-first-role.html">
+                    Learn more about this experience<img
+                      class="timeline__more-icon"
+                      src="https://api.iconify.design/mdi:arrow-right.svg?color=%235c5c5c&width=20&height=20"
+                      alt=""
+                      width="20"
+                      height="20"
+                      aria-hidden="true"
+                      decoding="async"
+                    />
+                  </a>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </main>
+      <aside class="experience-days" aria-live="polite" aria-label="Days to look back on">
+        <div class="experience-days__sticky">
+          <p class="experience-days__eyebrow">Days to look back on</p>
+          <div class="experience-days__viewport">
+            <div
+              class="experience-days__panel is-active"
+              data-chapter="0"
+              id="experience-days-chapter-0"
+              role="tabpanel"
+              aria-hidden="false"
+            >
+              <p class="experience-days__role">Lead product design</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Mar 24</span>
+                  <p class="experience-days__note">
+                    Role kickoff—finally on title work that owned the whole surface, not
+                    fragments.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Aug 14</span>
+                  <p class="experience-days__note">
+                    Handoff story landed; engineering said specs felt like a conversation, not
+                    homework.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jan 09</span>
+                  <p class="experience-days__note">
+                    Design crit where disagreement sharpened the flow—left with fewer pixels and
+                    clearer intent.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="1"
+              id="experience-days-chapter-1"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">Design systems &amp; brand</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Sep 21</span>
+                  <p class="experience-days__note">
+                    Token naming freeze—boring afternoon, but the release notes wrote themselves.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Apr 04</span>
+                  <p class="experience-days__note">
+                    Brand stretch session; we retired three off‑palette blues in one sitting.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Nov 17</span>
+                  <p class="experience-days__note">
+                    First cross‑team Figma library sync without merge anxiety.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="2"
+              id="experience-days-chapter-2"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">Freelance &amp; studio</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Dec 12</span>
+                  <p class="experience-days__note">
+                    Signed a retainer that explicitly named critique cycles—no surprise rounds.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jul 02</span>
+                  <p class="experience-days__note">
+                    Client call ended early because the prototype answered their “what if.”
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Feb 26</span>
+                  <p class="experience-days__note">
+                    Invoiced on time; scope doc did the enforcing so the relationship stayed kind.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="3"
+              id="experience-days-chapter-3"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">Marketing &amp; product design (in‑house)</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">May 08</span>
+                  <p class="experience-days__note">
+                    Campaign + product handoff in one room; alignment beat the calendar.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Oct 19</span>
+                  <p class="experience-days__note">
+                    Visual QA caught a headline truncation nobody else had stamina for.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Mar 31</span>
+                  <p class="experience-days__note">
+                    Component reuse cut a landing page build in half; PM bought lunch.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="4"
+              id="experience-days-chapter-4"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">UX research &amp; strategy</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jul 14</span>
+                  <p class="experience-days__note">
+                    Interview where a participant diagrammed their mental model on a napkin.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jan 22</span>
+                  <p class="experience-days__note">
+                    Journey map session turned a political debate into a ranked backlog.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Nov 05</span>
+                  <p class="experience-days__note">
+                    Synthesis night—themes clicked at hour four, worth the second coffee.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="5"
+              id="experience-days-chapter-5"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">Visual design &amp; brand support</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Apr 11</span>
+                  <p class="experience-days__note">
+                    Hero illustration pass—tighter crop, same story, half the noise.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Sep 29</span>
+                  <p class="experience-days__note">
+                    Print proof finally matched screen; color profile lesson filed forever.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Dec 03</span>
+                  <p class="experience-days__note">
+                    Icon grid audit—deleted thirty orphans nobody missed.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="6"
+              id="experience-days-chapter-6"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">Product design internship</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jun 20</span>
+                  <p class="experience-days__note">
+                    First wireframe walkthrough where I spoke last and listened longest.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Aug 07</span>
+                  <p class="experience-days__note">
+                    Ship day from the intern desk—tiny feature, huge dopamine.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jul 15</span>
+                  <p class="experience-days__note">
+                    Mentor feedback that reframed “finish” as “legible next step.”
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="7"
+              id="experience-days-chapter-7"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">Student design lead</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Oct 02</span>
+                  <p class="experience-days__note">
+                    Club brand refresh vote—learned politics and kerning don’t negotiate.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Mar 18</span>
+                  <p class="experience-days__note">
+                    Late press check; ink smelled like commitment.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Nov 11</span>
+                  <p class="experience-days__note">
+                    Portfolio night critique—first time someone else named my blind spots kindly.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="experience-days__panel"
+              data-chapter="8"
+              id="experience-days-chapter-8"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <p class="experience-days__role">Junior graphic &amp; web assistant</p>
+              <ul class="experience-days__list">
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Sep 06</span>
+                  <p class="experience-days__note">
+                    First time I saved for web instead of print—pixels felt slippery.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jan 14</span>
+                  <p class="experience-days__note">
+                    Boss said “good hierarchy” about a flyer; I replayed it for a week.
+                  </p>
+                </li>
+                <li class="experience-days__day">
+                  <span class="experience-days__date">Jun 22</span>
+                  <p class="experience-days__note">
+                    FTP upload worked on the third try; teenage patience established.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script
+      src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        if (typeof Lenis === "undefined") return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+        var lenis = new Lenis({
+          lerp: 0.052,
+          wheelMultiplier: 0.7,
+          touchMultiplier: 1.1,
+          smoothWheel: true,
+          smoothTouch: false,
+          syncTouch: true,
+          syncTouchLerp: 0.065,
+        });
+        window.lenisScrollToOptions = {
+          duration: 1.55,
+          easing: easeOutCubic,
+        };
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        window.lenis = lenis;
+      })();
+    </script>
+    <script
+      src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
+          return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (window.lenis) {
+          window.lenis.on("scroll", ScrollTrigger.update);
+        }
+
+        gsap.utils.toArray(".timeline__takeaway").forEach(function (el) {
+          gsap.from(el, {
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              toggleActions: "play none none none",
+            },
+            y: 60,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power4.out",
+          });
+        });
+
+        function prepareDrawTargets(svg) {
+          var shapes = svg.querySelectorAll(
+            "path, line, polyline, polygon, circle, ellipse"
+          );
+          var drawables = [];
+          shapes.forEach(function (shape) {
+            try {
+              if (typeof shape.getTotalLength !== "function") return;
+              var len = shape.getTotalLength();
+              if (!len || !isFinite(len)) return;
+              shape.setAttribute("fill", "none");
+              if (!shape.getAttribute("stroke")) {
+                shape.setAttribute("stroke", "currentColor");
+              }
+              if (!shape.getAttribute("stroke-width")) {
+                shape.setAttribute("stroke-width", "1.35");
+              }
+              shape.setAttribute("stroke-linecap", "round");
+              shape.setAttribute("stroke-linejoin", "round");
+              shape.setAttribute("stroke-dasharray", String(len));
+              shape.setAttribute("stroke-dashoffset", String(len));
+              drawables.push(shape);
+            } catch (e) {}
+          });
+          return drawables;
+        }
+
+        function fetchInlineSvg(img) {
+          return fetch(img.src, { mode: "cors", credentials: "omit" })
+            .then(function (res) {
+              if (!res.ok) throw new Error("svg fetch");
+              return res.text();
+            })
+            .then(function (text) {
+              var div = document.createElement("div");
+              div.innerHTML = text.trim();
+              var svg = div.querySelector("svg");
+              if (!svg) throw new Error("no svg");
+              svg.setAttribute("class", "stack-icon stack-icon-svg");
+              svg.setAttribute("width", "18");
+              svg.setAttribute("height", "18");
+              svg.setAttribute("aria-hidden", "true");
+              svg.setAttribute("focusable", "false");
+              svg._portfolioDrawables = prepareDrawTargets(svg);
+              img.replaceWith(svg);
+              return svg;
+            })
+            .catch(function () {
+              return null;
+            });
+        }
+
+        function buildTimelineStackAnimations() {
+          gsap.utils.toArray(".timeline__meta .stack-icons").forEach(
+            function (ul) {
+              var items = ul.querySelectorAll(":scope > li");
+              if (!items.length) return;
+
+              var tl = gsap.timeline({
+                scrollTrigger: {
+                  trigger: ul,
+                  start: "top 90%",
+                  toggleActions: "play none none none",
+                },
+              });
+
+              tl.from(
+                items,
+                {
+                  y: 40,
+                  opacity: 0,
+                  stagger: 0.12,
+                  duration: 1,
+                  ease: "power4.out",
+                },
+                0
+              );
+
+              var svgs = ul.querySelectorAll(
+                ":scope > li svg.stack-icon-svg"
+              );
+              svgs.forEach(function (svg, i) {
+                var shapes = svg._portfolioDrawables;
+                if (!shapes || !shapes.length) return;
+                tl.to(
+                  shapes,
+                  {
+                    strokeDashoffset: 0,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    stagger: 0.06,
+                  },
+                  1 + i * 0.18
+                );
+              });
+            }
+          );
+
+          ScrollTrigger.refresh();
+        }
+
+        var metaImgs = document.querySelectorAll(
+          ".timeline__meta .stack-icons img.stack-icon"
+        );
+        if (!metaImgs.length) {
+          buildTimelineStackAnimations();
+        } else {
+          Promise.all(Array.prototype.map.call(metaImgs, fetchInlineSvg)).then(
+            function () {
+              buildTimelineStackAnimations();
+            }
+          );
+        }
+
+        window.addEventListener("load", function () {
+          ScrollTrigger.refresh();
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        var chapters = document.querySelectorAll(".timeline__title");
+        var panels = document.querySelectorAll(".experience-days__panel");
+        if (!chapters.length || !panels.length || chapters.length !== panels.length)
+          return;
+
+        var reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        var activeIndex = 0;
+        var dayTween;
+
+        function setActiveChapter(index) {
+          if (index < 0 || index >= panels.length) return;
+          if (index === activeIndex) return;
+          activeIndex = index;
+
+          panels.forEach(function (panel, i) {
+            var on = i === index;
+            panel.classList.toggle("is-active", on);
+            panel.setAttribute("aria-hidden", on ? "false" : "true");
+          });
+
+          var panel = panels[index];
+          var roleEl = panel.querySelector(".experience-days__role");
+          var days = panel.querySelectorAll(".experience-days__day");
+          var wipeTargets = [];
+          if (roleEl) wipeTargets.push(roleEl);
+          days.forEach(function (d) {
+            wipeTargets.push(d);
+          });
+
+          if (dayTween && typeof dayTween.kill === "function") dayTween.kill();
+
+          if (
+            !reduceMotion &&
+            typeof gsap !== "undefined" &&
+            wipeTargets.length
+          ) {
+            gsap.set(wipeTargets, {
+              clipPath: "inset(0 100% 0 0)",
+            });
+            dayTween = gsap.to(wipeTargets, {
+              clipPath: "inset(0 0% 0 0)",
+              duration: 0.72,
+              ease: "power2.out",
+              stagger: 0.1,
+              overwrite: "auto",
+            });
+          } else if (wipeTargets.length) {
+            wipeTargets.forEach(function (el) {
+              el.style.clipPath = "";
+            });
+          }
+        }
+
+        function pickInitialFromScroll() {
+          var mid = window.innerHeight * 0.42;
+          var inside = [];
+          var closest = -1;
+          var closestDist = Infinity;
+          chapters.forEach(function (ch, i) {
+            var r = ch.getBoundingClientRect();
+            if (mid >= r.top && mid <= r.bottom) {
+              inside.push({
+                i: i,
+                d: Math.abs(mid - (r.top + r.height * 0.5)),
+              });
+            }
+            var clamped =
+              mid < r.top ? r.top : mid > r.bottom ? r.bottom : mid;
+            var dEdge = Math.abs(mid - clamped);
+            if (dEdge < closestDist) {
+              closestDist = dEdge;
+              closest = i;
+            }
+          });
+          if (inside.length) {
+            inside.sort(function (a, b) {
+              return a.d - b.d;
+            });
+            setActiveChapter(inside[0].i);
+          } else if (closest >= 0) {
+            setActiveChapter(closest);
+          }
+        }
+
+        var scrollRaf = 0;
+        function requestChapterSync() {
+          if (scrollRaf) return;
+          scrollRaf = requestAnimationFrame(function () {
+            scrollRaf = 0;
+            pickInitialFromScroll();
+          });
+        }
+
+        if (window.lenis) {
+          window.lenis.on("scroll", requestChapterSync);
+        }
+        window.addEventListener("scroll", requestChapterSync, {
+          passive: true,
+        });
+        window.addEventListener("resize", requestChapterSync);
+
+        pickInitialFromScroll();
+      })();
+    </script>
+    <script>
+      (function () {
+        var THEME_KEY = "portfolio-theme";
+        var toggle = document.getElementById("theme-toggle");
+        function setTheme(isDark) {
+          var root = document.documentElement;
+          if (isDark) root.setAttribute("data-theme", "dark");
+          else root.removeAttribute("data-theme");
+          try {
+            localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+          } catch (e) {}
+          if (toggle) {
+            toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+            toggle.setAttribute(
+              "aria-label",
+              isDark ? "Enable light mode" : "Enable dark mode"
+            );
+          }
+        }
+        if (toggle) {
+          setTheme(
+            document.documentElement.getAttribute("data-theme") === "dark"
+          );
+          toggle.addEventListener("click", function () {
+            setTheme(
+              document.documentElement.getAttribute("data-theme") !== "dark"
+            );
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

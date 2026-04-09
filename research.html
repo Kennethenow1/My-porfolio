@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="en" class="research-page">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cool facts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://api.iconify.design" crossorigin />
+    <link rel="prefetch" href="experience.html" as="document" />
+    <link rel="prefetch" href="project.html" as="document" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* --bg sampled from Final white.png (border median RGB 236, 234, 237) */
+      :root {
+        color-scheme: light;
+        --bg: #eceaed;
+        --text: #1a1a1a;
+        --muted: #5c5c5c;
+        --border: #e0dce1;
+        --accent: #2563eb;
+        --ui-surface: rgba(255, 255, 255, 0.9);
+        --ui-border-hover: #c8c4ca;
+        --link-underline: rgba(26, 26, 26, 0.22);
+        --progress-line: rgba(26, 26, 26, 0.22);
+        --progress-line-hover: rgba(26, 26, 26, 0.38);
+        --progress-active-bg: #ffffff;
+        --progress-active-shadow: rgba(0, 0, 0, 0.06);
+        --chrome-bg: rgba(255, 255, 255, 0.52);
+        --chrome-border: rgba(210, 206, 214, 0.65);
+        --chrome-border-hover: rgba(180, 174, 186, 0.85);
+        --chrome-inset: rgba(255, 255, 255, 0.72);
+        --chrome-shadow: 0 2px 5px rgba(26, 26, 26, 0.05),
+          0 10px 32px rgba(26, 26, 26, 0.08);
+        --chrome-shadow-hover: 0 4px 12px rgba(26, 26, 26, 0.07),
+          0 18px 40px rgba(26, 26, 26, 0.11);
+        --chrome-theme-glow: rgba(37, 99, 235, 0.22);
+      }
+
+      html[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #141416;
+        --text: #f4f4f5;
+        --muted: #a1a1aa;
+        --border: #2e2e32;
+        --accent: #60a5fa;
+        --ui-surface: rgba(30, 30, 34, 0.94);
+        --ui-border-hover: #52525b;
+        --link-underline: rgba(244, 244, 245, 0.28);
+        --progress-line: rgba(255, 255, 255, 0.22);
+        --progress-line-hover: rgba(255, 255, 255, 0.42);
+        --progress-active-bg: #fafafa;
+        --progress-active-shadow: rgba(0, 0, 0, 0.35);
+        --chrome-bg: rgba(38, 38, 42, 0.55);
+        --chrome-border: rgba(255, 255, 255, 0.1);
+        --chrome-border-hover: rgba(255, 255, 255, 0.18);
+        --chrome-inset: rgba(255, 255, 255, 0.08);
+        --chrome-shadow: 0 2px 6px rgba(0, 0, 0, 0.35),
+          0 12px 36px rgba(0, 0, 0, 0.28);
+        --chrome-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.4),
+          0 20px 48px rgba(0, 0, 0, 0.3);
+        --chrome-theme-glow: rgba(96, 165, 250, 0.28);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      /* Fallback when Lenis is off; Lenis sets .lenis-smooth and overrides */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /*
+       * Cross-document view transitions: current page phases out, then the
+       * next page phases in (opacity-led crossfade + slight offset).
+       */
+      @view-transition {
+        navigation: auto;
+      }
+
+      @keyframes portfolio-phase-out {
+        from {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          opacity: 0;
+          transform: translate3d(0, -0.375rem, 0);
+        }
+      }
+
+      @keyframes portfolio-phase-in {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 0.625rem, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      ::view-transition-old(root) {
+        animation: portfolio-phase-out 0.42s cubic-bezier(0.4, 0, 0.2, 1) both;
+        z-index: 1;
+      }
+
+      ::view-transition-new(root) {
+        animation: portfolio-phase-in 0.72s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+        z-index: 2;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        @keyframes portfolio-phase-out-rm {
+          to {
+            opacity: 0;
+          }
+        }
+
+        @keyframes portfolio-phase-in-rm {
+          from {
+            opacity: 0;
+          }
+        }
+
+        ::view-transition-old(root) {
+          animation: portfolio-phase-out-rm 0.12s ease-out both;
+        }
+
+        ::view-transition-new(root) {
+          animation: portfolio-phase-in-rm 0.22s ease-out 0.04s both;
+        }
+      }
+
+      html.lenis {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      body {
+        font-family: "DM Sans", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      /* Main + sticky pedestal: scroll advances projects on the left only */
+      .layout {
+        display: flex;
+        align-items: stretch;
+        min-height: 100vh;
+        min-height: 100dvh;
+        background: var(--bg);
+      }
+
+      /* Space between columns + inset from viewport right so paper isn’t glued to the edge / nav */
+      html.research-page .layout {
+        gap: clamp(1.5rem, 4vw, 3rem);
+        /* ~2× previous inset: paper sits much farther left */
+        padding-inline-end: max(
+          clamp(8.5rem, 24vw, 22rem),
+          env(safe-area-inset-right, 0px)
+        );
+        box-sizing: border-box;
+      }
+
+      .layout__tracks {
+        flex: 1;
+        min-width: 0;
+        max-width: 56rem;
+      }
+
+      /* One full-viewport beat per project; inner block centered in left column */
+      .project-panel {
+        scroll-margin-top: 0.5rem;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        padding: clamp(2rem, 5vw, 4rem);
+        padding-left: clamp(4.25rem, 9vw, 6.75rem);
+        padding-right: clamp(3rem, 10vw, 6rem);
+        box-sizing: border-box;
+      }
+
+      .project-panel__inner {
+        width: 100%;
+        max-width: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Research: use horizontal space; align content to top of viewport */
+      html.research-page .layout__tracks {
+        max-width: none;
+        flex: 1 1 min(0, 64%);
+      }
+
+      html.research-page .research-visual {
+        flex: 0 0 clamp(17.5rem, 30vw, 22rem);
+        margin-left: 0;
+      }
+
+      html.research-page .project-panel {
+        justify-content: flex-start;
+        padding-top: clamp(1.5rem, 4.5vh, 2.75rem);
+        padding-bottom: clamp(1.5rem, 5vh, 3rem);
+        /* Comfortable left; extra right padding so copy stays away from the paper */
+        padding-left: clamp(3.25rem, 6.5vw, 5rem);
+        padding-right: clamp(3rem, 7vw, 6rem);
+      }
+
+      html.research-page .project-panel__inner {
+        max-width: min(46rem, 100%);
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      html.research-page .research-prose-grid {
+        display: grid;
+        gap: 1.35rem 0;
+        margin-bottom: 1.35rem;
+      }
+
+      @media (min-width: 960px) {
+        html.research-page .research-prose-grid {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+          gap: 1.25rem 2.25rem;
+          align-items: start;
+        }
+      }
+
+      .project-panel__hypothesis-label,
+      .project-panel__result-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.45rem;
+      }
+
+      .project-panel__result-label {
+        margin-top: 1.15rem;
+      }
+
+      .project-panel__hypothesis,
+      .project-panel__result {
+        font-size: 0.9375rem;
+        line-height: 1.62;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      html.research-page .project-panel__impact-label {
+        margin-top: 1.05rem;
+        margin-bottom: 0.45rem;
+      }
+
+      html.research-page .project-panel__impact {
+        margin: 0 0 1.35rem;
+        font-size: 0.9375rem;
+        line-height: 1.62;
+        color: var(--muted);
+      }
+
+      html.research-page .project-panel__context {
+        margin-bottom: 0;
+        font-size: 0.9375rem;
+      }
+
+      .project-panel__concept--math {
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        color: var(--text);
+      }
+
+      .project-panel__concept--math > p {
+        margin: 0 0 0.65rem;
+      }
+
+      .project-panel__concept--math > p:last-child {
+        margin-bottom: 0;
+      }
+
+      .research-equation {
+        margin: 0.75rem 0 0.85rem;
+        padding: 0.55rem 0.75rem 0.65rem;
+        border-radius: 8px;
+        background: color-mix(in srgb, var(--ui-surface) 55%, var(--bg) 45%);
+        border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      html[data-theme="dark"] .research-equation {
+        background: color-mix(in srgb, var(--bg) 88%, #27272a 12%);
+        border-color: color-mix(in srgb, var(--border) 90%, transparent);
+      }
+
+      .research-equation .katex-display {
+        margin: 0.25rem 0;
+      }
+
+      html.research-page .katex {
+        color: var(--text);
+      }
+
+      html.research-page .research-equation .katex {
+        font-size: 1.06em;
+      }
+
+      html.research-page .project-panel .meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem 1.75rem;
+        align-items: start;
+      }
+
+      html.research-page .meta__block--stack {
+        grid-column: 1 / -1;
+      }
+
+      @media (max-width: 520px) {
+        html.research-page .project-panel .meta {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .project-panel__index {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.75rem;
+      }
+
+      .project-panel h1 {
+        margin: 0 0 1.25rem;
+      }
+
+      .project-panel__context-label,
+      .project-panel__impact-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.5rem;
+      }
+
+      .project-panel__impact-label {
+        margin-top: 0.15rem;
+      }
+
+      .project-panel__context,
+      .project-panel__impact {
+        font-size: 1rem;
+        line-height: 1.65;
+        color: var(--muted);
+        margin: 0 0 1.75rem;
+      }
+
+      .project-panel .meta {
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        margin: 0;
+      }
+
+      .project-panel__actions {
+        margin: 1.35rem 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.85rem 1.35rem;
+      }
+
+      .project-panel__live-link,
+      .project-panel__detail-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--text);
+        text-decoration: none;
+        border-bottom: 1px solid var(--link-underline);
+        padding-bottom: 0.12rem;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .project-panel__live-link:hover,
+      .project-panel__detail-link:hover {
+        border-bottom-color: var(--text);
+      }
+
+      .project-panel__live-link:focus-visible,
+      .project-panel__detail-link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+        border-bottom-color: transparent;
+      }
+
+      .project-panel__live-icon,
+      .project-panel__detail-icon {
+        font-size: 0.85em;
+        font-weight: 500;
+        opacity: 0.65;
+      }
+
+      /* Far-left section progress (horizontal lines) */
+      .scroll-progress {
+        position: fixed;
+        z-index: 50;
+        left: max(0.75rem, env(safe-area-inset-left, 0px));
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.9rem;
+        margin: 0;
+        padding: 0;
+        border: none;
+        background: transparent;
+        list-style: none;
+      }
+
+      .scroll-progress__item {
+        display: block;
+        padding: 0.35rem 0.5rem 0.35rem 0;
+        margin: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: inherit;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .scroll-progress__item:focus {
+        outline: none;
+      }
+
+      .scroll-progress__item:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .scroll-progress__line {
+        display: block;
+        height: 2px;
+        border-radius: 1px;
+        width: 0.875rem;
+        background: var(--progress-line);
+        transition:
+          width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+          background 0.35s ease,
+          box-shadow 0.35s ease,
+          opacity 0.35s ease;
+      }
+
+      .scroll-progress__item.is-active .scroll-progress__line {
+        width: 2.75rem;
+        background: var(--progress-active-bg);
+        opacity: 1;
+        box-shadow:
+          0 0 0 1px var(--progress-active-shadow),
+          0 2px 14px rgba(0, 0, 0, 0.12);
+      }
+
+      .scroll-progress__item:not(.is-active):hover .scroll-progress__line {
+        background: var(--progress-line-hover);
+        width: 1.125rem;
+      }
+
+      .scroll-progress--many {
+        max-height: min(72vh, 22rem);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 0.35rem;
+        scrollbar-width: thin;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .scroll-progress__line {
+          transition-duration: 0.05s;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .scroll-progress {
+          top: auto;
+          bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+          left: max(0.75rem, env(safe-area-inset-left, 0px));
+          transform: none;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.65rem;
+          margin: 0;
+          padding: 0.42rem 0.65rem;
+          border-radius: 999px;
+          max-height: none;
+          overflow: visible;
+          background: color-mix(in srgb, var(--bg) 82%, #ffffff 18%);
+          border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.5) inset,
+            0 6px 28px rgba(26, 26, 26, 0.08);
+          backdrop-filter: blur(16px) saturate(1.06);
+          -webkit-backdrop-filter: blur(16px) saturate(1.06);
+        }
+
+        html[data-theme="dark"] .scroll-progress {
+          background: color-mix(in srgb, var(--bg) 86%, #27272a 14%);
+          border-color: rgba(255, 255, 255, 0.1);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.06) inset,
+            0 8px 36px rgba(0, 0, 0, 0.42);
+        }
+
+        html[data-theme="dark"] .scroll-progress__line {
+          background: rgba(255, 255, 255, 0.26);
+        }
+
+        html[data-theme="dark"]
+          .scroll-progress__item.is-active
+          .scroll-progress__line {
+          background: var(--progress-active-bg);
+          box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.12),
+            0 2px 10px rgba(0, 0, 0, 0.28);
+        }
+
+        .scroll-progress__item {
+          padding: 0.25rem;
+        }
+
+        .scroll-progress__line {
+          width: 0.625rem;
+        }
+
+        .scroll-progress__item.is-active .scroll-progress__line {
+          width: 2rem;
+        }
+
+        .project-panel {
+          padding-left: clamp(1.5rem, 5vw, 2.5rem);
+          padding-right: clamp(1.5rem, 5vw, 2.5rem);
+          padding-bottom: clamp(4rem, 14vh, 6rem);
+        }
+
+        .project-panel__inner {
+          max-width: 26rem;
+        }
+      }
+
+      h1 {
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+        margin: 0 0 1rem;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+
+      .meta dt {
+        font-weight: 600;
+        color: var(--text);
+        margin: 0 0 0.25rem;
+      }
+
+      .meta dd {
+        margin: 0;
+      }
+
+      .meta__block--stack {
+        flex: 1 1 100%;
+        min-width: 0;
+      }
+
+      .stack-icons {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem 1.1rem;
+        align-items: center;
+      }
+
+      .stack-icons li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        min-height: 1.35rem;
+      }
+
+      .stack-icon {
+        width: 1.125rem;
+        height: 1.125rem;
+        flex-shrink: 0;
+        display: block;
+        object-fit: contain;
+        /* Grayscale stack (Figma-style); brand SVGs tone to --muted */
+        filter: grayscale(1) contrast(1.05);
+        opacity: 0.9;
+      }
+
+      .stack-icon-svg {
+        width: 1.125rem;
+        height: 1.125rem;
+        flex-shrink: 0;
+        display: block;
+        overflow: visible;
+        color: var(--muted);
+        filter: grayscale(1) contrast(1.05);
+        opacity: 0.9;
+      }
+
+      .stack-icons__label {
+        font-size: inherit;
+        line-height: 1.3;
+        color: var(--muted);
+      }
+
+      .research-visual {
+        flex: 0 0 32%;
+        min-width: 0;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100dvh;
+        background: var(--bg);
+        isolation: isolate;
+        overflow: hidden;
+        align-self: flex-start;
+      }
+
+      .research-sheet {
+        position: absolute;
+        inset: clamp(1.25rem, 3vw, 2rem);
+        border-radius: 8px;
+        font-family: "Caveat", "Segoe Script", cursive;
+        /* Paper + ink: monochrome; marker uses separate vars below */
+        --sheet-ink: #0a0a0a;
+        --sheet-ink-soft: #1a1a1a;
+        --sheet-marker-bg: #0a0a0a;
+        --sheet-marker-ink: #fafafa;
+        --sheet-rule: rgba(0, 0, 0, 0.09);
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        background-color: color-mix(in srgb, #ffffff 88%, var(--bg) 12%);
+        box-shadow:
+          inset 0 0 0 1px rgba(0, 0, 0, 0.04),
+          0 1px 0 rgba(255, 255, 255, 0.85),
+          0 12px 36px rgba(0, 0, 0, 0.06);
+        /* Dot grid (swap back to ruled lines: use repeating-linear-gradient on --research-line if preferred) */
+        --research-line-h: 1.9rem;
+        --research-dot-step: 1.35rem;
+        --research-dot: var(--sheet-rule);
+        background-image: radial-gradient(
+          circle at center,
+          var(--research-dot) 0.08rem,
+          transparent calc(0.08rem + 0.5px)
+        );
+        background-size: var(--research-dot-step) var(--research-dot-step);
+        background-position: 0.2rem 0.38rem;
+        overflow: hidden;
+      }
+
+      /*
+       * Paper only (dot-grid sheet): position inside `.research-visual`.
+       * Adjust `left` / `right` / `top` / `bottom` here — not the main text padding.
+       * Larger `left` nudges the sheet toward the viewport right (away from copy).
+       */
+      html.research-page .research-sheet {
+        inset: auto;
+        top: clamp(1.25rem, 3vw, 2rem);
+        bottom: clamp(1.25rem, 3vw, 2rem);
+        left: clamp(0.4rem, 1.25vw, 1rem);
+        right: clamp(0.85rem, 2.25vw, 1.65rem);
+      }
+
+      html[data-theme="dark"] .research-sheet {
+        --sheet-ink: #f5f5f5;
+        --sheet-ink-soft: #e8e8e8;
+        /* Inverted “marker”: light bar, black handwriting on top */
+        --sheet-marker-bg: #f0f0f0;
+        --sheet-marker-ink: #0a0a0a;
+        --sheet-rule: rgba(255, 255, 255, 0.11);
+        background-color: color-mix(in srgb, var(--bg) 92%, #0d0d0f 8%);
+        border-color: rgba(255, 255, 255, 0.12);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+          0 12px 44px rgba(0, 0, 0, 0.45);
+      }
+
+      .research-sheet__inner {
+        position: relative;
+        height: 100%;
+        padding: 1.35rem 1.25rem 1.5rem 2.85rem;
+      }
+
+      .research-sheet__margin {
+        position: absolute;
+        left: 1.35rem;
+        top: 0.85rem;
+        bottom: 0.85rem;
+        width: 3px;
+        border-radius: 2px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.35) 0%,
+          rgba(0, 0, 0, 0.2) 100%
+        );
+        opacity: 0.85;
+      }
+
+      html[data-theme="dark"] .research-sheet__margin {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.35) 0%,
+          rgba(255, 255, 255, 0.18) 100%
+        );
+      }
+
+      .research-sheet__content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .research-sheet__eyebrow {
+        margin: 0 0 0.2rem;
+        font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: none;
+        color: var(--sheet-ink-soft);
+      }
+
+      .research-sheet__title {
+        margin: 0 0 0.65rem;
+        font-size: clamp(1.5rem, 2.6vw, 2rem);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        line-height: 1.2;
+        color: var(--sheet-ink);
+      }
+
+      .research-sheet__body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .research-sheet__line {
+        margin: 0;
+        min-height: var(--research-line-h, 1.9rem);
+        font-size: clamp(1.2rem, 1.85vw, 1.45rem);
+        line-height: var(--research-line-h, 1.9rem);
+        color: var(--sheet-ink);
+        font-weight: 500;
+      }
+
+      /* Black marker (light): white letters on black. Dark theme: light bar + black letters */
+      .research-sheet__marker {
+        background: var(--sheet-marker-bg);
+        color: var(--sheet-marker-ink);
+        padding: 0.04em 0.32em 0.14em;
+        margin: 0 0.04em;
+        border-radius: 3px;
+        font-weight: 700;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        box-shadow:
+          0 0.08em 0 rgba(0, 0, 0, 0.22),
+          inset 0 -0.06em 0 rgba(255, 255, 255, 0.12);
+      }
+
+      html[data-theme="dark"] .research-sheet__marker {
+        box-shadow:
+          0 0.08em 0 rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      }
+
+      /* Handwritten “nope” — double scribble strike (~~text~~ in data-sheet-preview) */
+      .research-sheet__cancelled {
+        position: relative;
+        display: inline;
+        color: color-mix(in srgb, var(--sheet-ink) 38%, transparent);
+        text-decoration: none;
+      }
+
+      .research-sheet__cancelled::before,
+      .research-sheet__cancelled::after {
+        content: "";
+        position: absolute;
+        left: -0.12em;
+        right: -0.12em;
+        top: 50%;
+        height: 0.11em;
+        min-height: 2px;
+        background: var(--sheet-ink);
+        opacity: 0.78;
+        border-radius: 999px;
+        pointer-events: none;
+      }
+
+      .research-sheet__cancelled::before {
+        transform: translateY(-55%) rotate(-11deg) scaleX(1.02);
+      }
+
+      .research-sheet__cancelled::after {
+        transform: translateY(-35%) rotate(7deg) scaleX(1.04);
+        opacity: 0.5;
+      }
+
+      html[data-theme="dark"] .stack-icon,
+      html[data-theme="dark"] .stack-icon-svg {
+        filter: grayscale(1) contrast(1.05) invert(1) brightness(1.12);
+        opacity: 0.88;
+      }
+
+      .research-visual::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+        background-image:
+          linear-gradient(to right, var(--bg) 0%, transparent 72%),
+          linear-gradient(to left, var(--bg) 0%, transparent 72%);
+        background-size: min(52px, 12%) 100%, min(52px, 12%) 100%;
+        background-position: left, right;
+        background-repeat: no-repeat;
+      }
+
+      .project-panel__concept-label {
+        margin: 1.75rem 0 0.35rem;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .project-panel__concept {
+        margin: 0;
+        font-size: 0.9375rem;
+        line-height: 1.65;
+        color: var(--text);
+        max-width: 38rem;
+      }
+
+      html.research-page .project-panel__concept,
+      html.research-page .project-panel__concept--math {
+        max-width: none;
+      }
+
+      /* Vertical site nav — fixed on viewport right */
+      .site-nav {
+        position: fixed;
+        z-index: 9998;
+        right: max(1.1rem, env(safe-area-inset-right, 0px));
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .site-nav__list {
+        list-style: none;
+        margin: 0;
+        padding: 0.35rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1.4rem;
+      }
+
+      .site-nav__item {
+        margin: 0;
+        padding: 0;
+      }
+
+      .site-nav__link {
+        pointer-events: auto;
+        display: inline-block;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: var(--muted);
+        border-right: 2px solid transparent;
+        padding: 0.2rem 0.55rem 0.2rem 0;
+        margin-right: -2px;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .site-nav__link:hover {
+        color: var(--text);
+      }
+
+      .site-nav__link:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .site-nav__link[aria-current="page"] {
+        color: var(--text);
+        font-weight: 700;
+        border-right-color: var(--text);
+      }
+
+      .site-nav__item--theme {
+        pointer-events: auto;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .site-nav__item--theme .top-actions__theme {
+        vertical-align: middle;
+      }
+
+      @media (min-width: 769px) {
+        .site-nav__item--theme {
+          margin-top: 1.35rem;
+          padding-top: 1.15rem;
+          border-top: 1px solid
+            color-mix(in srgb, var(--border) 72%, transparent);
+          align-self: flex-end;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .layout {
+          flex-direction: column;
+        }
+
+        html.research-page .layout {
+          padding-inline-end: max(
+            1rem,
+            env(safe-area-inset-right, 0px)
+          );
+        }
+
+        /* Ruled sheet is desktop-only — same rhythm as project pedestal */
+        .research-visual {
+          display: none !important;
+        }
+
+        .layout__tracks {
+          max-width: none;
+          flex: 1;
+          padding-top: calc(4rem + env(safe-area-inset-top, 0px));
+        }
+
+        .project-panel {
+          min-height: min(88vh, 760px);
+          justify-content: flex-start;
+          padding-top: clamp(1rem, 3vh, 1.75rem);
+        }
+
+        /* Sticky top bar: frosted, tuned per color-scheme */
+        .site-nav {
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: auto !important;
+          transform: none !important;
+          max-width: none;
+          padding: calc(0.55rem + env(safe-area-inset-top, 0px))
+            max(4.15rem, calc(env(safe-area-inset-right, 0px) + 3.55rem))
+            0.65rem max(0.85rem, env(safe-area-inset-left, 0px));
+          background: color-mix(in srgb, var(--bg) 88%, #ffffff 12%);
+          border-bottom: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.55) inset,
+            0 10px 36px rgba(26, 26, 26, 0.07);
+          backdrop-filter: blur(20px) saturate(1.08);
+          -webkit-backdrop-filter: blur(20px) saturate(1.08);
+          z-index: 10002;
+        }
+
+        html[data-theme="dark"] .site-nav {
+          background: color-mix(in srgb, var(--bg) 82%, #1f1f23 18%);
+          border-bottom-color: rgba(255, 255, 255, 0.1);
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.07) inset,
+            0 12px 44px rgba(0, 0, 0, 0.48);
+        }
+
+        .site-nav__list {
+          width: 100%;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 0.45rem 0.85rem;
+        }
+
+        .site-nav__item--theme {
+          margin-left: auto;
+          margin-top: 0;
+          padding-top: 0;
+          border-top: none;
+          align-self: center;
+        }
+
+        .site-nav__item--theme .top-actions__theme {
+          width: 2.65rem;
+          height: 2.65rem;
+          border-radius: 11px;
+        }
+
+        .site-nav__item--theme .top-actions__theme-icon {
+          width: 1.35rem;
+          height: 1.35rem;
+        }
+
+        .site-nav__link {
+          font-size: 0.625rem;
+          padding: 0.2rem 0;
+          margin-right: 0;
+          border-right: none;
+          border-bottom: 2px solid transparent;
+        }
+
+        .site-nav__link[aria-current="page"] {
+          border-right-color: transparent;
+          border-bottom-color: var(--text);
+        }
+
+        .top-actions {
+          top: calc(0.48rem + env(safe-area-inset-top, 0px));
+          right: max(0.65rem, env(safe-area-inset-right, 0px));
+          z-index: 10003;
+        }
+
+        .top-actions__assistant {
+          min-height: 2.75rem;
+          padding: 0.35rem 0.15rem;
+          display: inline-flex;
+          align-items: center;
+        }
+      }
+
+      @media (max-width: 768px) and (prefers-reduced-transparency: reduce) {
+        .site-nav,
+        .scroll-progress {
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+        }
+
+        .site-nav {
+          background: var(--bg);
+        }
+
+        html[data-theme="dark"] .site-nav {
+          background: var(--bg);
+        }
+
+        .scroll-progress {
+          background: var(--bg);
+        }
+
+        html[data-theme="dark"] .scroll-progress {
+          background: color-mix(in srgb, var(--bg) 94%, #3f3f46);
+        }
+      }
+
+      .top-actions {
+        position: fixed;
+        z-index: 10001;
+        top: 1rem;
+        right: max(1rem, env(safe-area-inset-right, 0px));
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.35rem;
+        padding: 0.15rem 0.2rem;
+      }
+
+      .top-actions__assistant {
+        margin: 0;
+        padding: 0.4rem 0.1rem;
+        font: inherit;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: none;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: color-mix(in srgb, var(--muted) 55%, transparent);
+        text-underline-offset: 0.38em;
+        text-decoration-thickness: 1px;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          color 0.2s ease,
+          text-decoration-color 0.2s ease;
+      }
+
+      .top-actions__assistant:hover {
+        color: var(--text);
+        text-decoration-color: color-mix(in srgb, var(--text) 55%, transparent);
+      }
+
+      .top-actions__assistant:focus {
+        outline: none;
+      }
+
+      .top-actions__assistant:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 4px;
+        border-radius: 2px;
+      }
+
+      .top-actions__theme {
+        box-sizing: border-box;
+        position: relative;
+        width: 2.85rem;
+        height: 2.85rem;
+        margin: 0;
+        padding: 0;
+        border: 1px solid var(--chrome-border);
+        border-radius: 12px;
+        background: var(--chrome-bg);
+        backdrop-filter: blur(18px) saturate(1.12);
+        -webkit-backdrop-filter: blur(18px) saturate(1.12);
+        box-shadow: inset 0 1px 0 var(--chrome-inset), var(--chrome-shadow);
+        cursor: pointer;
+        color: var(--muted);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.24s ease,
+          border-color 0.2s ease,
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .top-actions__theme:hover {
+        color: var(--text);
+        border-color: var(--chrome-border-hover);
+        box-shadow: inset 0 1px 0 var(--chrome-inset), var(--chrome-shadow-hover);
+        transform: translateY(-2px);
+      }
+
+      .top-actions__theme:active {
+        transform: translateY(0) scale(0.97);
+        transition-duration: 0.1s;
+      }
+
+      .top-actions__theme:focus {
+        outline: none;
+      }
+
+      .top-actions__theme:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .top-actions__theme-icon {
+        width: 1.35rem;
+        height: 1.35rem;
+        flex-shrink: 0;
+        display: none;
+        filter: grayscale(1);
+        opacity: 0.92;
+      }
+
+      #theme-toggle[aria-pressed="true"] .top-actions__theme-icon--moon {
+        display: none;
+      }
+
+      #theme-toggle[aria-pressed="true"] .top-actions__theme-icon--sun {
+        display: block;
+      }
+
+      #theme-toggle:not([aria-pressed="true"]) .top-actions__theme-icon--moon {
+        display: block;
+      }
+
+      #theme-toggle:not([aria-pressed="true"]) .top-actions__theme-icon--sun {
+        display: none;
+      }
+
+      .top-actions__theme[aria-pressed="true"] {
+        background: linear-gradient(155deg, #232328 0%, #141418 100%);
+        color: #c4c4c8;
+        border-color: rgba(255, 255, 255, 0.14);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.12),
+          0 6px 24px var(--chrome-theme-glow),
+          0 4px 14px rgba(0, 0, 0, 0.18);
+      }
+
+      .top-actions__theme[aria-pressed="true"] .top-actions__theme-icon {
+        filter: grayscale(1) brightness(1.15);
+        opacity: 1;
+      }
+
+      .top-actions__theme[aria-pressed="true"]:hover {
+        color: #e4e4e7;
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          0 8px 28px var(--chrome-theme-glow),
+          0 8px 24px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"] {
+        background: linear-gradient(155deg, #fafafa 0%, #e8e8ec 100%);
+        color: #52525b;
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.95),
+          0 6px 24px var(--chrome-theme-glow),
+          0 4px 16px rgba(0, 0, 0, 0.12);
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"]:hover {
+        color: #3f3f46;
+        border-color: rgba(0, 0, 0, 0.12);
+        box-shadow:
+          inset 0 1px 0 #ffffff,
+          0 8px 32px var(--chrome-theme-glow),
+          0 8px 20px rgba(0, 0, 0, 0.14);
+      }
+
+      html[data-theme="dark"] .top-actions__theme[aria-pressed="true"] .top-actions__theme-icon {
+        filter: grayscale(1) brightness(0.55);
+        opacity: 0.95;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .top-actions__theme,
+        .top-actions__theme:hover,
+        .top-actions__theme:active,
+        .top-actions__assistant {
+          transition-duration: 0.01ms;
+        }
+
+        .top-actions__theme:hover,
+        .top-actions__theme[aria-pressed="true"]:hover {
+          transform: none;
+        }
+
+        .top-actions__theme:active {
+          transform: none;
+        }
+      }
+    </style>
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("portfolio-theme") === "dark")
+            document.documentElement.setAttribute("data-theme", "dark");
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="top-actions" role="toolbar" aria-label="Page tools">
+      <button
+        type="button"
+        class="top-actions__assistant"
+        id="assistant-btn"
+        aria-label="Open assistant"
+      >
+        Assistant
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Site">
+      <ul class="site-nav__list">
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="me.html">Me</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="about.html">About</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="project.html">Projects</a>
+        </li>
+        <li class="site-nav__item">
+          <a class="site-nav__link" href="experience.html">Experience</a>
+        </li>
+        <li class="site-nav__item">
+          <a
+            class="site-nav__link"
+            href="research.html"
+            aria-current="page"
+            aria-label="Research &amp; writing"
+            >Research &amp; writing</a
+          >
+        </li>
+        <li class="site-nav__item site-nav__item--theme">
+          <button
+            type="button"
+            class="top-actions__theme"
+            id="theme-toggle"
+            aria-pressed="false"
+            aria-label="Enable dark mode"
+          >
+            <svg
+              class="top-actions__theme-icon top-actions__theme-icon--moon"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <svg
+              class="top-actions__theme-icon top-actions__theme-icon--sun"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+          <script>
+            (function () {
+              var t = document.getElementById("theme-toggle");
+              if (!t) return;
+              var dark =
+                document.documentElement.getAttribute("data-theme") === "dark";
+              t.setAttribute("aria-pressed", dark ? "true" : "false");
+              t.setAttribute(
+                "aria-label",
+                dark ? "Enable light mode" : "Enable dark mode"
+              );
+            })();
+          </script>
+        </li>
+      </ul>
+    </nav>
+
+    <nav
+      class="scroll-progress"
+      id="scroll-progress"
+      aria-label="Research &amp; writing sections"
+    >
+      <button
+        type="button"
+        class="scroll-progress__item is-active"
+        data-target="#research-1"
+        aria-label="Research 1"
+        aria-current="true"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#research-2"
+        aria-label="Research 2"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+      <button
+        type="button"
+        class="scroll-progress__item"
+        data-target="#research-3"
+        aria-label="Research 3"
+        aria-current="false"
+      >
+        <span class="scroll-progress__line" aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <div class="layout">
+      <main class="layout__tracks">
+        <section
+          class="project-panel"
+          id="research-1"
+          data-sheet-label="Cool facts"
+          data-sheet-title="Priors in the loop: belief updates under sparse feedback"
+          data-sheet-preview="~~They add linearly~~ Odds don’t add—they **multiply**, so a meh likelihood ratio barely budges belief.|People ~~ignore base rates~~ act **Bayesian** until the UI hides n and how noisy the signal is.|**Intervals** and “how surprised would I be?” beat lone ~~heroic point~~ point estimates in meetings."
+        >
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Research 1 of 3</p>
+            <h1>Priors in the loop</h1>
+            <div class="research-prose-grid">
+              <div>
+                <p class="project-panel__context-label">Context</p>
+                <p class="project-panel__context">
+                  Human-in-the-loop systems rarely behave like textbook Bayesians:
+                  feedback is delayed, confounded, and easy to misread. This line
+                  of work asks how interface design shapes what people treat as
+                  evidence and how quickly beliefs should move.
+                </p>
+              </div>
+              <div>
+                <p class="project-panel__hypothesis-label">Hypothesis</p>
+                <p class="project-panel__hypothesis">
+                  Under sparse, noisy feedback, operators overweight recent
+                  signals and underweight base rates unless the interface makes
+                  uncertainty and sample size salient.
+                </p>
+                <p class="project-panel__result-label">Result</p>
+                <p class="project-panel__result">
+                  Calmer analytics copy—explicit intervals, likelihood language,
+                  and gentle priors in the UI—reduces over-confidence without
+                  slowing expert workflows in pilot reviews.
+                </p>
+              </div>
+            </div>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Informs calmer analytics surfaces across projects: fewer false
+              alarms, a clearer sense of sample size, and copy that resists
+              over-confidence when the model is uncertain.
+            </p>
+            <p class="project-panel__concept-label">Concept</p>
+            <div class="project-panel__concept project-panel__concept--math">
+              <p>
+                <strong>Bayes in one line.</strong> Let prior odds be
+                \(O_0 = P(H) / P(\neg H)\). After observing data \(D\), posterior
+                odds multiply by the likelihood ratio.
+              </p>
+              <div class="research-equation">
+                \[
+                  O_1 = O_0 \cdot \frac{P(D \mid H)}{P(D \mid \neg H)}
+                \]
+              </div>
+              <p>
+                When the ratio \(P(D \mid H) / P(D \mid \neg H)\) is close to
+                \(1\), beliefs should barely move—strong updates require strong
+                evidence or many independent pieces of data.
+              </p>
+            </div>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Research, writing</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2026</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Decision under uncertainty</dd>
+              </div>
+              <div>
+                <dt>Methods</dt>
+                <dd>Literature synthesis, small-n studies</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:latex.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">LaTeX</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:r.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">R</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:python.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Python</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Read PDF<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="#"
+                >Methods appendix<span class="project-panel__detail-icon" aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="project-panel"
+          id="research-2"
+          data-sheet-label="Cool facts"
+          data-sheet-title="Linearity, limits, and causal claims"
+          data-sheet-preview="~~Correlation equals causation~~ A slope is still just a line until you’ve sketched **what you’re conditioning on**.|**Interactions** love to nap in pretty aggregate charts.|One honest **sensitivity slide** kills ten Slack debates about ~~the magic number~~ ‘the number.’"
+        >
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Research 2 of 3</p>
+            <h1>Linearity and limits</h1>
+            <div class="research-prose-grid">
+              <div>
+                <p class="project-panel__context-label">Context</p>
+                <p class="project-panel__context">
+                  Teams often reach for regression because it is legible, not
+                  because the world is linear. This thread documents where linear
+                  summaries help, where they mislead, and how to communicate
+                  curvature and heterogeneity without drowning readers in math.
+                </p>
+              </div>
+              <div>
+                <p class="project-panel__hypothesis-label">Hypothesis</p>
+                <p class="project-panel__hypothesis">
+                  Stakeholders routinely read a single OLS slope as causal when
+                  interactions and confounding are present but invisible in
+                  aggregate charts.
+                </p>
+                <p class="project-panel__result-label">Result</p>
+                <p class="project-panel__result">
+                  Pairing slopes with residual views, pre-declared scope, and
+                  one sensitivity scenario per slide measurably reduced
+                  over-interpretation in design critiques.
+                </p>
+              </div>
+            </div>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              Better default for stakeholder-facing charts: explicit scope,
+              residual checks called out, and language that separates prediction
+              from explanation—reusable in decks and specs.
+            </p>
+            <p class="project-panel__concept-label">Concept</p>
+            <div class="project-panel__concept project-panel__concept--math">
+              <p>
+                <strong>Ordinary least squares.</strong> With responses
+                \(y_i\) and predictors \(x_i\), OLS chooses coefficients that
+                minimize squared error:
+              </p>
+              <div class="research-equation">
+                \[
+                  \min_{\beta_0,\,\beta_1} \;
+                  \sum_{i=1}^{n}
+                  \bigl(y_i - \beta_0 - \beta_1 x_i\bigr)^2
+                \]
+              </div>
+              <p>
+                The estimated slope \(\hat{\beta}_1\) describes a
+                <em>conditional association</em> in the fitted model. It is a
+                causal effect only under identification assumptions (e.g. no
+                unmeasured confounding) that the regression line alone does not
+                guarantee.
+              </p>
+            </div>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Analysis, visualization</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2025</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Applied statistics</dd>
+              </div>
+              <div>
+                <dt>Methods</dt>
+                <dd>Simulation, robustness checks</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:r.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">R</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/mdi:chart-line.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Plotting</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Read PDF<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="#"
+                >Replication pack<span class="project-panel__detail-icon" aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="project-panel"
+          id="research-3"
+          data-sheet-label="Cool facts"
+          data-sheet-title="Signals in the noise: measurement and false positives"
+          data-sheet-preview="If the null is true, **p-values** behave like a fair spinner—~~totally random~~ when the model’s honest.|Peek at enough metrics and even **noise** gets a ~~real effect~~ trophy.|**Low power** means silence, not ~~proof of nothing~~ proof that nothing’s there."
+        >
+          <div class="project-panel__inner">
+            <p class="project-panel__index">Research 3 of 3</p>
+            <h1>Signals in the noise</h1>
+            <div class="research-prose-grid">
+              <div>
+                <p class="project-panel__context-label">Context</p>
+                <p class="project-panel__context">
+                  Surveys, logs, and experiments all inherit measurement error.
+                  This note collects heuristics for judging whether a
+                  “significant” bump is plausible given base rates, \(n\), and
+                  how many hypotheses were quietly tested along the way.
+                </p>
+              </div>
+              <div>
+                <p class="project-panel__hypothesis-label">Hypothesis</p>
+                <p class="project-panel__hypothesis">
+                  With moderate \(n\) and many implicit comparisons, nominal
+                  \(p \lt 0.05\) thresholds produce a high rate of actionable
+                  false positives for product teams.
+                </p>
+                <p class="project-panel__result-label">Result</p>
+                <p class="project-panel__result">
+                  Workshops that led with effect sizes, intervals, and a simple
+                  FDR metaphor cut “ship it” decisions on weak lifts in
+                  post-experiment reviews.
+                </p>
+              </div>
+            </div>
+            <p class="project-panel__impact-label">Impact</p>
+            <p class="project-panel__impact">
+              A shared vocabulary for partners: false-discovery risk, effect
+              sizes, and confidence intervals as honest summaries of what the
+              data can support—not just whether a bar “won.”
+            </p>
+            <p class="project-panel__concept-label">Concept</p>
+            <div class="project-panel__concept project-panel__concept--math">
+              <p>
+                <strong>Type I and Type II error.</strong> Let \(\alpha\) be the
+                chance of rejecting a true null (false alarm), and \(\beta\) the
+                chance of missing a real effect. Power is \(1 - \beta\).
+              </p>
+              <div class="research-equation">
+                \[
+                  \alpha = P\bigl(\text{reject } H_0 \mid H_0 \text{ true}\bigr),
+                  \qquad \text{power} = 1 - \beta
+                \]
+              </div>
+              <p>
+                Tightening \(\alpha\) reduces false alarms but lowers power
+                unless \(n\) or effect size increases—so inference is always a
+                deliberate tradeoff, not a checkbox.
+              </p>
+            </div>
+            <dl class="meta">
+              <div>
+                <dt>Role</dt>
+                <dd>Methods notes</dd>
+              </div>
+              <div>
+                <dt>Year</dt>
+                <dd>2024</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>Probability &amp; inference</dd>
+              </div>
+              <div>
+                <dt>Methods</dt>
+                <dd>Analytical bounds, examples</dd>
+              </div>
+              <div class="meta__block--stack">
+                <dt>Stack</dt>
+                <dd>
+                  <ul class="stack-icons">
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:python.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Python</span>
+                    </li>
+                    <li>
+                      <img
+                        class="stack-icon"
+                        src="https://api.iconify.design/simple-icons:jupyter.svg?color=%235c5c5c&width=18&height=18"
+                        alt=""
+                        width="18"
+                        height="18"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span class="stack-icons__label">Jupyter</span>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+            <div class="project-panel__actions">
+              <a
+                class="project-panel__live-link"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Read PDF<span class="project-panel__live-icon" aria-hidden="true"
+                  >↗</span
+                ></a
+              >
+              <a class="project-panel__detail-link" href="#"
+                >Slide deck<span class="project-panel__detail-icon" aria-hidden="true"
+                  >→</span
+                ></a
+              >
+            </div>
+          </div>
+        </section>
+      </main>
+      <aside class="research-visual" aria-hidden="true">
+        <div class="research-sheet">
+          <div class="research-sheet__inner">
+            <div class="research-sheet__margin" aria-hidden="true"></div>
+            <div class="research-sheet__content">
+              <p class="research-sheet__eyebrow" id="research-sheet-label">
+                Cool facts
+              </p>
+              <h2 class="research-sheet__title" id="research-sheet-title">
+                Priors in the loop: belief updates under sparse feedback
+              </h2>
+              <div class="research-sheet__body" id="research-sheet-body">
+                <p class="research-sheet__line">
+                  <span class="research-sheet__cancelled">They add linearly</span>
+                  Odds don’t add—they
+                  <mark class="research-sheet__marker">multiply</mark>, so a meh
+                  likelihood ratio barely budges belief.
+                </p>
+                <p class="research-sheet__line">
+                  People
+                  <span class="research-sheet__cancelled">ignore base rates</span>
+                  act
+                  <mark class="research-sheet__marker">Bayesian</mark> until the
+                  UI hides n and how noisy the signal is.
+                </p>
+                <p class="research-sheet__line">
+                  <mark class="research-sheet__marker">Intervals</mark> and “how
+                  surprised would I be?” beat lone
+                  <span class="research-sheet__cancelled">heroic point</span>
+                  point estimates in meetings.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <script
+      src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        if (typeof Lenis === "undefined") return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+          return;
+
+        function easeOutCubic(t) {
+          return 1 - Math.pow(1 - t, 3);
+        }
+
+        var lenis = new Lenis({
+          lerp: 0.052,
+          wheelMultiplier: 0.7,
+          touchMultiplier: 1.1,
+          smoothWheel: true,
+          smoothTouch: false,
+          syncTouch: true,
+          syncTouchLerp: 0.065,
+        });
+
+        window.lenisScrollToOptions = {
+          duration: 1.55,
+          easing: easeOutCubic,
+        };
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        window.lenis = lenis;
+      })();
+    </script>
+    <script>
+      (function () {
+        var THEME_KEY = "portfolio-theme";
+        var toggle = document.getElementById("theme-toggle");
+        function setTheme(isDark) {
+          var root = document.documentElement;
+          if (isDark) root.setAttribute("data-theme", "dark");
+          else root.removeAttribute("data-theme");
+          try {
+            localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+          } catch (e) {}
+          if (toggle) {
+            toggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+            toggle.setAttribute(
+              "aria-label",
+              isDark ? "Enable light mode" : "Enable dark mode"
+            );
+          }
+        }
+        if (toggle) {
+          setTheme(
+            document.documentElement.getAttribute("data-theme") === "dark"
+          );
+          toggle.addEventListener("click", function () {
+            setTheme(
+              document.documentElement.getAttribute("data-theme") !== "dark"
+            );
+          });
+        }
+      })();
+
+      (function () {
+        var nav = document.getElementById("scroll-progress");
+        if (!nav) return;
+
+        var items = nav.querySelectorAll(".scroll-progress__item");
+        var sections = document.querySelectorAll(".project-panel");
+        if (!items.length || !sections.length) return;
+
+        var sheetLabel = document.getElementById("research-sheet-label");
+        var sheetTitle = document.getElementById("research-sheet-title");
+        var sheetBody = document.getElementById("research-sheet-body");
+
+        function escapeHtml(s) {
+          if (!s) return "";
+          var d = document.createElement("div");
+          d.textContent = s;
+          return d.innerHTML;
+        }
+
+        /** ~~tildes~~ = scribbled “wrong”; **stars** = marker highlight. */
+        function formatPlainSegment(s) {
+          var parts = String(s).split(/~~/);
+          var o = "";
+          for (var j = 0; j < parts.length; j++) {
+            if (j % 2 === 0) {
+              o += escapeHtml(parts[j]);
+            } else if (parts[j].length) {
+              o +=
+                '<span class="research-sheet__cancelled" aria-label="Crossed out">' +
+                escapeHtml(parts[j]) +
+                "</span>";
+            }
+          }
+          return o;
+        }
+
+        function formatSheetLine(line) {
+          var parts = String(line).trim().split(/\*\*/);
+          var out = "";
+          for (var i = 0; i < parts.length; i++) {
+            if (i % 2 === 0) {
+              out += formatPlainSegment(parts[i]);
+            } else if (parts[i].length) {
+              out +=
+                '<mark class="research-sheet__marker">' +
+                escapeHtml(parts[i]) +
+                "</mark>";
+            }
+          }
+          return out;
+        }
+
+        function updateSheet(section) {
+          if (!section || !sheetTitle || !sheetBody) return;
+          if (sheetLabel) {
+            sheetLabel.textContent =
+              section.getAttribute("data-sheet-label") || "Cool facts";
+          }
+          sheetTitle.textContent =
+            section.getAttribute("data-sheet-title") || "";
+          var preview = section.getAttribute("data-sheet-preview") || "";
+          var lines = preview.split("|");
+          sheetBody.innerHTML = lines
+            .map(function (line) {
+              var t = line.trim();
+              if (!t) return "";
+              return (
+                '<p class="research-sheet__line">' + formatSheetLine(t) + "</p>"
+              );
+            })
+            .filter(Boolean)
+            .join("");
+        }
+
+        var ticking = false;
+
+        function setActive(index) {
+          if (index < 0) index = 0;
+          if (index >= items.length) index = items.length - 1;
+          items.forEach(function (btn, j) {
+            var on = j === index;
+            btn.classList.toggle("is-active", on);
+            btn.setAttribute("aria-current", on ? "true" : "false");
+          });
+          updateSheet(sections[index]);
+        }
+
+        function computeActive() {
+          var vh = window.innerHeight;
+          var bandMid = vh * 0.42;
+          var bandHalf = vh * 0.18;
+          var bandTop = bandMid - bandHalf;
+          var bandBottom = bandMid + bandHalf;
+          var bestI = 0;
+          var bestScore = -1;
+
+          for (var i = 0; i < sections.length; i++) {
+            var r = sections[i].getBoundingClientRect();
+            var overlap = Math.max(
+              0,
+              Math.min(r.bottom, bandBottom) - Math.max(r.top, bandTop)
+            );
+            var visible = Math.max(
+              0,
+              Math.min(r.bottom, vh) - Math.max(r.top, 0)
+            );
+            var score = overlap * 2 + visible * 0.12;
+            if (r.top <= bandMid && r.bottom >= bandMid) score += 0.5;
+            if (score > bestScore) {
+              bestScore = score;
+              bestI = i;
+            }
+          }
+
+          setActive(bestI);
+        }
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            ticking = false;
+            computeActive();
+          });
+        }
+
+        items.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var sel = btn.getAttribute("data-target");
+            var el = sel && document.querySelector(sel);
+            if (!el) return;
+            if (window.lenis) {
+              var opts = window.lenisScrollToOptions || {};
+              window.lenis.scrollTo(el, {
+                offset: 0,
+                duration: opts.duration || 1.55,
+                easing: opts.easing,
+              });
+            } else {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll, { passive: true });
+        computeActive();
+      })();
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      (function () {
+        function portfolioRenderMath() {
+          if (typeof renderMathInElement === "undefined") return;
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: "$$", right: "$$", display: true },
+              { left: "\\(", right: "\\)", display: false },
+              { left: "\\[", right: "\\]", display: true },
+            ],
+            ignoredTags: [
+              "script",
+              "noscript",
+              "style",
+              "textarea",
+              "pre",
+              "code",
+            ],
+            throwOnError: false,
+          });
+        }
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", portfolioRenderMath);
+        } else {
+          portfolioRenderMath();
+        }
+      })();
+    </script>
+  </body>
+</html>
