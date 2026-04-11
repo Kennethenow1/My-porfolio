@@ -548,7 +548,7 @@
       .visual__frame {
         position: absolute;
         z-index: 1;
-        left: 50%;
+        left: 42%;
         bottom: 60%;
         transform: translate(-50%, 0);
         width: min(72%, 100%);
@@ -2384,7 +2384,7 @@
           var scale = Math.max(W / iw, H / ih);
           var w1 = iw * scale;
           var h1 = ih * scale;
-          var ox = (W - w1) * 0.5;
+          var ox = (W - w1) * 0.5 - 160;
           var oy = (H - h1) * 0.5;
           if (h1 > H) {
             oy -= (h1 - H) * 0.14;
