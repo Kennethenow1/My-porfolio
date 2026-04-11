@@ -4,10 +4,10 @@
 [build]
   publish = "."
 
-# Homepage lives at me.html; serve it at / so the bare domain works.
+# Landing page: serve about at / so the bare domain opens About first.
 [[redirects]]
   from = "/"
-  to = "/me.html"
+  to = "/about.html"
   status = 200
 
 [[headers]]
