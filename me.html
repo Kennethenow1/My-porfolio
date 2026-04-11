@@ -149,12 +149,23 @@
         max-width: min(28rem, 100%);
       }
 
-      .me-photo img {
+      .me-photo__img {
         display: block;
         width: 100%;
         height: auto;
-        border-radius: 2px;
-        border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+        /* Cutout PNGs: no frame so they sit on --bg */
+      }
+
+      .me-photo__img--dark {
+        display: none;
+      }
+
+      html[data-theme="dark"] .me-photo__img--light {
+        display: none;
+      }
+
+      html[data-theme="dark"] .me-photo__img--dark {
+        display: block;
       }
 
       .site-nav {
@@ -616,11 +627,17 @@
     <main class="me-main" id="main">
       <figure class="me-photo">
         <img
-          src="portrait.jpg"
+          class="me-photo__img me-photo__img--light"
+          src="picture of me white.png"
           alt="Portrait"
-          width="1200"
-          height="1500"
           decoding="async"
+        />
+        <img
+          class="me-photo__img me-photo__img--dark"
+          src="picture of me black .png"
+          alt=""
+          decoding="async"
+          aria-hidden="true"
         />
       </figure>
     </main>

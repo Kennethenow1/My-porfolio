@@ -210,7 +210,7 @@
       @media (min-width: 1000px) {
         .about-layout {
           display: grid;
-          grid-template-columns: minmax(0, 1fr) minmax(17.5rem, 24rem);
+          grid-template-columns: minmax(0, 1fr) minmax(23rem, 38rem);
           gap: 2.5rem 3rem;
           align-items: start;
         }
@@ -368,6 +368,9 @@
       .about-section:nth-child(4).is-visible {
         transition-delay: 0.105s;
       }
+      .about-section:nth-child(5).is-visible {
+        transition-delay: 0.14s;
+      }
 
       .about-section__label {
         font-size: 0.6875rem;
@@ -404,6 +407,46 @@
 
       .about-section li {
         margin: 0.35rem 0;
+      }
+
+      .about-edu {
+        display: flex;
+        flex-direction: column;
+        gap: 1.35rem;
+        margin: 0.15rem 0 0;
+      }
+
+      .about-edu__item {
+        margin: 0;
+        padding: 0;
+      }
+
+      .about-edu__item:first-child {
+        padding-top: 0.15rem;
+      }
+
+      .about-edu__school {
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.015em;
+        color: var(--text);
+      }
+
+      .about-edu__row {
+        margin: 0;
+        font-size: 0.9375rem;
+        line-height: 1.55;
+        color: var(--muted);
+      }
+
+      .about-edu__place {
+        margin: 0.2rem 0 0;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: var(--muted);
+        opacity: 0.92;
       }
 
       .about-contact-links {
@@ -1017,37 +1060,74 @@
       <div class="about-hero">
         <header class="about-intro">
           <p class="about-eyebrow">About</p>
-          <h1 class="about-title">Background, training, and how to reach me</h1>
+          <h1 class="about-title">Background, training, and contacts</h1>
           <p class="about-fun" aria-label="Intro">
-            <span class="about-fun__w" style="--i: 0">I</span>
-            <span class="about-fun__w" style="--i: 1">treat</span>
-            <span class="about-fun__w" style="--i: 2">my</span>
-            <span class="about-fun__w" style="--i: 3">path</span>
-            <span class="about-fun__w" style="--i: 4">like</span>
-            <span class="about-fun__w" style="--i: 5">a</span>
-            <span class="about-fun__w" style="--i: 6">mixtape—</span>
-            <span class="about-fun__w" style="--i: 7">school</span>
-            <span class="about-fun__w" style="--i: 8">as</span>
-            <span class="about-fun__w" style="--i: 9">track</span>
-            <span class="about-fun__w" style="--i: 10">one,</span>
-            <span class="about-fun__w" style="--i: 11">experiments</span>
-            <span class="about-fun__w" style="--i: 12">in</span>
-            <span class="about-fun__w" style="--i: 13">the</span>
-            <span class="about-fun__w" style="--i: 14">middle,</span>
-            <span class="about-fun__w" style="--i: 15">certifications</span>
-            <span class="about-fun__w" style="--i: 16">as</span>
-            <span class="about-fun__w" style="--i: 17">the</span>
-            <span class="about-fun__w" style="--i: 18">bonus</span>
-            <span class="about-fun__w" style="--i: 19">cuts,</span>
-            <span class="about-fun__w" style="--i: 20">and</span>
-            <span class="about-fun__w" style="--i: 21">you're</span>
-            <span class="about-fun__w" style="--i: 22">welcome</span>
-            <span class="about-fun__w" style="--i: 23">to</span>
-            <span class="about-fun__w" style="--i: 24">request</span>
-            <span class="about-fun__w" style="--i: 25">a</span>
-            <span class="about-fun__w" style="--i: 26">remix</span>
-            <span class="about-fun__w" style="--i: 27">by</span>
-            <span class="about-fun__w" style="--i: 28">email.</span>
+            <span class="about-fun__w" style="--i: 0">Hello,</span>
+            <span class="about-fun__w" style="--i: 1">I'm</span>
+            <span class="about-fun__w" style="--i: 2">Kenneth</span>
+            <span class="about-fun__w" style="--i: 3">Enow,</span>
+            <span class="about-fun__w" style="--i: 4">an</span>
+            <span class="about-fun__w" style="--i: 5">AI</span>
+            <span class="about-fun__w" style="--i: 6">major</span>
+            <span class="about-fun__w" style="--i: 7">who</span>
+            <span class="about-fun__w" style="--i: 8">loves</span>
+            <span class="about-fun__w" style="--i: 9">strategy</span>
+            <span class="about-fun__w" style="--i: 10">games</span>
+            <span class="about-fun__w" style="--i: 11">and</span>
+            <span class="about-fun__w" style="--i: 12">the</span>
+            <span class="about-fun__w" style="--i: 13">small</span>
+            <span class="about-fun__w" style="--i: 14">win</span>
+            <span class="about-fun__w" style="--i: 15">of</span>
+            <span class="about-fun__w" style="--i: 16">making</span>
+            <span class="about-fun__w" style="--i: 17">someone</span>
+            <span class="about-fun__w" style="--i: 18">smile.</span>
+            <span class="about-fun__w" style="--i: 19">In</span>
+            <span class="about-fun__w" style="--i: 20">the</span>
+            <span class="about-fun__w" style="--i: 21">long</span>
+            <span class="about-fun__w" style="--i: 22">run,</span>
+            <span class="about-fun__w" style="--i: 23">I</span>
+            <span class="about-fun__w" style="--i: 24">want</span>
+            <span class="about-fun__w" style="--i: 25">to</span>
+            <span class="about-fun__w" style="--i: 26">help</span>
+            <span class="about-fun__w" style="--i: 27">science</span>
+            <span class="about-fun__w" style="--i: 28">move</span>
+            <span class="about-fun__w" style="--i: 29">in</span>
+            <span class="about-fun__w" style="--i: 30">directions</span>
+            <span class="about-fun__w" style="--i: 31">that</span>
+            <span class="about-fun__w" style="--i: 32">make</span>
+            <span class="about-fun__w" style="--i: 33">life</span>
+            <span class="about-fun__w" style="--i: 34">better</span>
+            <span class="about-fun__w" style="--i: 35">for</span>
+            <span class="about-fun__w" style="--i: 36">more</span>
+            <span class="about-fun__w" style="--i: 37">people.</span>
+            <span class="about-fun__w" style="--i: 38">Outside</span>
+            <span class="about-fun__w" style="--i: 39">of</span>
+            <span class="about-fun__w" style="--i: 40">class</span>
+            <span class="about-fun__w" style="--i: 41">and</span>
+            <span class="about-fun__w" style="--i: 42">projects,</span>
+            <span class="about-fun__w" style="--i: 43">you'll</span>
+            <span class="about-fun__w" style="--i: 44">usually</span>
+            <span class="about-fun__w" style="--i: 45">find</span>
+            <span class="about-fun__w" style="--i: 46">me</span>
+            <span class="about-fun__w" style="--i: 47">deep</span>
+            <span class="about-fun__w" style="--i: 48">in</span>
+            <span class="about-fun__w" style="--i: 49">a</span>
+            <span class="about-fun__w" style="--i: 50">fantasy</span>
+            <span class="about-fun__w" style="--i: 51">novel.</span>
+            <span class="about-fun__w" style="--i: 52">If</span>
+            <span class="about-fun__w" style="--i: 53">my</span>
+            <span class="about-fun__w" style="--i: 54">work</span>
+            <span class="about-fun__w" style="--i: 55">or</span>
+            <span class="about-fun__w" style="--i: 56">interests</span>
+            <span class="about-fun__w" style="--i: 57">overlap</span>
+            <span class="about-fun__w" style="--i: 58">with</span>
+            <span class="about-fun__w" style="--i: 59">yours,</span>
+            <span class="about-fun__w" style="--i: 60">I'd</span>
+            <span class="about-fun__w" style="--i: 61">love</span>
+            <span class="about-fun__w" style="--i: 62">to</span>
+            <span class="about-fun__w" style="--i: 63">hear</span>
+            <span class="about-fun__w" style="--i: 64">from</span>
+            <span class="about-fun__w" style="--i: 65">you.</span>
           </p>
         </header>
       </div>
@@ -1056,19 +1136,24 @@
         <section class="about-section" id="school" aria-labelledby="about-school-heading">
           <p class="about-section__label">Education</p>
           <h2 id="about-school-heading">Where the curiosity got serious</h2>
-          <p>
-            Swap this block with your program—degree or focus, institution, and
-            the labs or studios that changed how you think.
-          </p>
-        </section>
-
-        <section class="about-section" id="story" aria-labelledby="about-story-heading">
-          <p class="about-section__label">History</p>
-          <h2 id="about-story-heading">The through-line</h2>
-          <p>
-            A short arc in plain language: where you started, what you leaned
-            into, and the kinds of problems you want next—no decoration required.
-          </p>
+          <div class="about-edu">
+            <article class="about-edu__item">
+              <h3 class="about-edu__school">American School of Yaounde</h3>
+              <p class="about-edu__row">
+                <span class="about-edu__dates">2020 to 2025</span>
+                <span aria-hidden="true"> · </span>
+                <span>High school</span>
+              </p>
+              <p class="about-edu__place">Yaoundé, Cameroon</p>
+            </article>
+            <article class="about-edu__item">
+              <h3 class="about-edu__school">Purdue University</h3>
+              <p class="about-edu__row">
+                <span class="about-edu__dates">2025 to 2029</span>
+              </p>
+              <p class="about-edu__place">Indiana, USA</p>
+            </article>
+          </div>
         </section>
 
         <section
@@ -1079,9 +1164,24 @@
           <p class="about-section__label">Certifications</p>
           <h2 id="about-certs-heading">Credentials</h2>
           <ul>
-            <li>Certificate or course — issuer, year</li>
-            <li>Second credential — issuer, year</li>
-            <li>Design, research, or tooling — update as needed</li>
+            <li>International Baccalaureate — issued 2025</li>
+            <li>American diploma — issued 2025</li>
+            <li>
+              Bachelor's in AI — Purdue University, 2025 to 2029 (in progress)
+            </li>
+          </ul>
+        </section>
+
+        <section
+          class="about-section"
+          id="achievements"
+          aria-labelledby="about-achievements-heading"
+        >
+          <p class="about-section__label">Achievements</p>
+          <h2 id="about-achievements-heading">Recognition</h2>
+          <ul>
+            <li>President's Award for Academic Excellence</li>
+            <li>Dean's List — Purdue University</li>
           </ul>
         </section>
 
@@ -1093,12 +1193,18 @@
             specific and I will reply.
           </p>
           <div class="about-contact-links">
-            <a href="mailto:you@example.com">Email you@example.com</a>
+            <a href="mailto:Kenneth505@gmail.com">Email Kenneth505@gmail.com</a>
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/kenneth-enow-b931812a6/"
               rel="noopener noreferrer"
               target="_blank"
               >LinkedIn</a
+            >
+            <a
+              href="https://github.com/kennethenow1"
+              rel="noopener noreferrer"
+              target="_blank"
+              >GitHub</a
             >
           </div>
         </section>
@@ -1263,6 +1369,78 @@
                   />
                   <span class="stack-icons__label">Motion &amp; interaction</span>
                 </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:message-text-outline.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Prompt engineering</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:book-search-outline.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Literature review</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:flask-outline.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Experiment design</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:chart-bell-curve.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Statistical reasoning</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:source-branch.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Reproducible workflows</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:file-document-edit-outline.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Research writing</span>
+                </li>
               </ul>
             </div>
 
@@ -1389,6 +1567,42 @@
                   />
                   <span class="stack-icons__label">Ambiguous problems</span>
                 </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:account-star-outline.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Leadership</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:handshake-outline.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Bargaining</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/mdi:microphone-outline.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Public speaking</span>
+                </li>
               </ul>
             </div>
 
@@ -1458,30 +1672,6 @@
                 <li>
                   <img
                     class="stack-icon"
-                    src="https://api.iconify.design/simple-icons:figma.svg?color=%235c5c5c&width=18&height=18"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span class="stack-icons__label">Figma</span>
-                </li>
-                <li>
-                  <img
-                    class="stack-icon"
-                    src="https://api.iconify.design/simple-icons:storybook.svg?color=%235c5c5c&width=18&height=18"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span class="stack-icons__label">Storybook</span>
-                </li>
-                <li>
-                  <img
-                    class="stack-icon"
                     src="https://api.iconify.design/simple-icons:git.svg?color=%235c5c5c&width=18&height=18"
                     alt=""
                     width="18"
@@ -1502,6 +1692,18 @@
                     decoding="async"
                   />
                   <span class="stack-icons__label">Node.js</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/simple-icons:pandas.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">pandas</span>
                 </li>
                 <li>
                   <img
@@ -1542,26 +1744,74 @@
                 <li>
                   <img
                     class="stack-icon"
-                    src="https://api.iconify.design/simple-icons:webflow.svg?color=%235c5c5c&width=18&height=18"
+                    src="https://api.iconify.design/simple-icons:cursor.svg?color=%235c5c5c&width=18&height=18"
                     alt=""
                     width="18"
                     height="18"
                     loading="lazy"
                     decoding="async"
                   />
-                  <span class="stack-icons__label">Webflow</span>
+                  <span class="stack-icons__label">Cursor</span>
                 </li>
                 <li>
                   <img
                     class="stack-icon"
-                    src="https://api.iconify.design/simple-icons:linear.svg?color=%235c5c5c&width=18&height=18"
+                    src="https://api.iconify.design/simple-icons:obsidian.svg?color=%235c5c5c&width=18&height=18"
                     alt=""
                     width="18"
                     height="18"
                     loading="lazy"
                     decoding="async"
                   />
-                  <span class="stack-icons__label">Linear</span>
+                  <span class="stack-icons__label">Obsidian</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/simple-icons:microsoftword.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Microsoft Word</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/simple-icons:microsoftexcel.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Excel</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/simple-icons:microsoftpowerpoint.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">PowerPoint</span>
+                </li>
+                <li>
+                  <img
+                    class="stack-icon"
+                    src="https://api.iconify.design/simple-icons:canva.svg?color=%235c5c5c&width=18&height=18"
+                    alt=""
+                    width="18"
+                    height="18"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="stack-icons__label">Canva</span>
                 </li>
               </ul>
             </div>
@@ -1584,14 +1834,14 @@
                 <li>
                   <img
                     class="stack-icon"
-                    src="https://api.iconify.design/simple-icons:r.svg?color=%235c5c5c&width=18&height=18"
+                    src="https://api.iconify.design/simple-icons:javascript.svg?color=%235c5c5c&width=18&height=18"
                     alt=""
                     width="18"
                     height="18"
                     loading="lazy"
                     decoding="async"
                   />
-                  <span class="stack-icons__label">R</span>
+                  <span class="stack-icons__label">JavaScript</span>
                 </li>
                 <li>
                   <img
@@ -1644,18 +1894,6 @@
                 <li>
                   <img
                     class="stack-icon"
-                    src="https://api.iconify.design/simple-icons:graphql.svg?color=%235c5c5c&width=18&height=18"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span class="stack-icons__label">GraphQL</span>
-                </li>
-                <li>
-                  <img
-                    class="stack-icon"
                     src="https://api.iconify.design/mdi:code-json.svg?color=%235c5c5c&width=18&height=18"
                     alt=""
                     width="18"
@@ -1664,30 +1902,6 @@
                     decoding="async"
                   />
                   <span class="stack-icons__label">JSON &amp; config</span>
-                </li>
-                <li>
-                  <img
-                    class="stack-icon"
-                    src="https://api.iconify.design/mdi:regex.svg?color=%235c5c5c&width=18&height=18"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span class="stack-icons__label">Regex</span>
-                </li>
-                <li>
-                  <img
-                    class="stack-icon"
-                    src="https://api.iconify.design/simple-icons:cplusplus.svg?color=%235c5c5c&width=18&height=18"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span class="stack-icons__label">C / C++</span>
                 </li>
               </ul>
             </div>
@@ -1794,7 +2008,7 @@
                 <li>
                   <img
                     class="stack-icon"
-                    src="https://api.iconify.design/mdi:logic-gate.svg?color=%235c5c5c&width=18&height=18"
+                    src="https://api.iconify.design/mdi:function-variant.svg?color=%235c5c5c&width=18&height=18"
                     alt=""
                     width="18"
                     height="18"
@@ -1802,18 +2016,6 @@
                     decoding="async"
                   />
                   <span class="stack-icons__label">Logic &amp; proofs</span>
-                </li>
-                <li>
-                  <img
-                    class="stack-icon"
-                    src="https://api.iconify.design/mdi:numeric.svg?color=%235c5c5c&width=18&height=18"
-                    alt=""
-                    width="18"
-                    height="18"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span class="stack-icons__label">Numeric methods</span>
                 </li>
               </ul>
             </div>
