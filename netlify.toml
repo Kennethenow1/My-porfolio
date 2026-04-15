@@ -4,6 +4,9 @@
 [build]
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+
 # Landing page: serve about at / so the bare domain opens About first.
 [[redirects]]
   from = "/"

@@ -1,6 +1,13 @@
 .DS_Store
 Thumbs.db
 *.log
+.env
 
 # Netlify CLI local state
 .netlify/
+
+# Dependencies
+node_modules/
+
+# Netlify Dev artifacts
+deno.lock

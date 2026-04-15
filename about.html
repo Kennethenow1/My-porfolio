@@ -22,6 +22,7 @@
         --muted: #5c5c5c;
         --border: #e0dce1;
         --accent: #2563eb;
+        --focus-ring: rgba(17, 24, 39, 0.32);
         --ui-surface: rgba(255, 255, 255, 0.9);
         --link-underline: rgba(26, 26, 26, 0.22);
         --chrome-bg: rgba(255, 255, 255, 0.52);
@@ -32,13 +33,13 @@
           0 10px 32px rgba(26, 26, 26, 0.08);
         --chrome-shadow-hover: 0 4px 12px rgba(26, 26, 26, 0.07),
           0 18px 40px rgba(26, 26, 26, 0.11);
-        --chrome-theme-glow: rgba(37, 99, 235, 0.22);
-        --scrollbar-track: color-mix(in srgb, var(--bg) 92%, var(--border) 8%);
-        --scrollbar-thumb: color-mix(in srgb, var(--muted) 42%, var(--border) 58%);
-        --scrollbar-thumb-hover: color-mix(in srgb, var(--muted) 62%, var(--text) 8%);
+        --chrome-theme-glow: rgba(26, 26, 26, 0.12);
+        --scrollbar-track: color-mix(in srgb, var(--bg) 70%, transparent);
+        --scrollbar-thumb: color-mix(in srgb, var(--muted) 42%, transparent);
+        --scrollbar-thumb-hover: color-mix(in srgb, var(--muted) 58%, transparent);
         --scrollbar-thumb-active: color-mix(in srgb, var(--accent) 28%, var(--muted) 72%);
         --scrollbar-radius: 999px;
-        --scrollbar-size: 8px;
+        --scrollbar-size: 10px;
       }
 
       html[data-theme="dark"] {
@@ -48,6 +49,7 @@
         --muted: #a1a1aa;
         --border: #2e2e32;
         --accent: #60a5fa;
+        --focus-ring: rgba(255, 255, 255, 0.28);
         --ui-surface: rgba(30, 30, 34, 0.94);
         --link-underline: rgba(244, 244, 245, 0.28);
         --chrome-bg: rgba(38, 38, 42, 0.55);
@@ -58,11 +60,11 @@
           0 12px 36px rgba(0, 0, 0, 0.28);
         --chrome-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.4),
           0 20px 48px rgba(0, 0, 0, 0.3);
-        --chrome-theme-glow: rgba(96, 165, 250, 0.28);
-        --scrollbar-track: color-mix(in srgb, var(--bg) 94%, var(--border) 6%);
-        --scrollbar-thumb: color-mix(in srgb, var(--muted) 50%, var(--border) 50%);
-        --scrollbar-thumb-hover: color-mix(in srgb, var(--muted) 72%, var(--text) 10%);
-        --scrollbar-thumb-active: color-mix(in srgb, var(--accent) 35%, var(--muted) 65%);
+        --chrome-theme-glow: rgba(255, 255, 255, 0.12);
+        --scrollbar-track: color-mix(in srgb, var(--bg) 70%, transparent);
+        --scrollbar-thumb: color-mix(in srgb, var(--muted) 42%, transparent);
+        --scrollbar-thumb-hover: color-mix(in srgb, var(--muted) 58%, transparent);
+        --scrollbar-thumb-active: color-mix(in srgb, var(--accent) 28%, var(--muted) 72%);
       }
 
       *,
@@ -144,35 +146,37 @@
         overflow-x: hidden;
       }
 
-      /* Custom scrollbars: main page + skills column (Firefox + WebKit) */
-      html:has(body.about-page) {
+      /* Custom scrollbars (site-wide): Firefox + WebKit */
+      html {
         scrollbar-width: thin;
         scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
       }
 
-      html:has(body.about-page)::-webkit-scrollbar {
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar {
         width: var(--scrollbar-size);
         height: var(--scrollbar-size);
       }
 
-      html:has(body.about-page)::-webkit-scrollbar-track {
+      html::-webkit-scrollbar-track,
+      body::-webkit-scrollbar-track {
         background: var(--scrollbar-track);
-        border-radius: var(--scrollbar-radius);
       }
 
-      html:has(body.about-page)::-webkit-scrollbar-thumb {
+      html::-webkit-scrollbar-thumb,
+      body::-webkit-scrollbar-thumb {
         background: var(--scrollbar-thumb);
         border-radius: var(--scrollbar-radius);
-        border: 2px solid var(--scrollbar-track);
-        background-clip: padding-box;
+        border: 3px solid color-mix(in srgb, var(--bg) 85%, transparent);
       }
 
-      html:has(body.about-page)::-webkit-scrollbar-thumb:hover {
+      html::-webkit-scrollbar-thumb:hover,
+      body::-webkit-scrollbar-thumb:hover {
         background: var(--scrollbar-thumb-hover);
-        border-color: var(--scrollbar-track);
       }
 
-      html:has(body.about-page)::-webkit-scrollbar-thumb:active {
+      html::-webkit-scrollbar-thumb:active,
+      body::-webkit-scrollbar-thumb:active {
         background: var(--scrollbar-thumb-active);
       }
 
@@ -246,8 +250,7 @@
         .about-layout__skills-inner::-webkit-scrollbar-thumb {
           background: var(--scrollbar-thumb);
           border-radius: var(--scrollbar-radius);
-          border: 2px solid var(--scrollbar-track);
-          background-clip: padding-box;
+          border: 3px solid color-mix(in srgb, var(--bg) 85%, transparent);
         }
 
         .about-layout__skills-inner::-webkit-scrollbar-thumb:hover {
@@ -812,6 +815,177 @@
         border-radius: 2px;
       }
 
+      html.assistant-open,
+      html.assistant-open body {
+        overflow: hidden;
+      }
+
+      .assistant-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10050;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: max(1rem, env(safe-area-inset-top, 0px))
+          max(1rem, env(safe-area-inset-right, 0px))
+          max(1rem, env(safe-area-inset-bottom, 0px))
+          max(1rem, env(safe-area-inset-left, 0px));
+        background: color-mix(in srgb, var(--bg) 55%, transparent);
+        backdrop-filter: blur(18px) saturate(1.06);
+        -webkit-backdrop-filter: blur(18px) saturate(1.06);
+      }
+
+      .assistant-overlay.is-open {
+        display: flex;
+      }
+
+      .assistant-modal {
+        width: min(44rem, calc(100vw - 2rem));
+        max-height: min(78vh, 48rem);
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        background: color-mix(in srgb, var(--bg) 18%, #ffffff 82%);
+        border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+        border-radius: 16px;
+        box-shadow:
+          0 20px 60px rgba(26, 26, 26, 0.18),
+          0 2px 10px rgba(26, 26, 26, 0.08);
+        overflow: hidden;
+      }
+
+      html[data-theme="dark"] .assistant-modal {
+        background: color-mix(in srgb, var(--bg) 76%, #1f1f23 24%);
+        border-color: rgba(255, 255, 255, 0.1);
+        box-shadow:
+          0 22px 70px rgba(0, 0, 0, 0.52),
+          0 2px 10px rgba(0, 0, 0, 0.32);
+      }
+
+      .assistant-modal__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.1rem;
+        border-bottom: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+      }
+
+      html[data-theme="dark"] .assistant-modal__header {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .assistant-modal__title {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text);
+      }
+
+      .assistant-modal__close {
+        appearance: none;
+        border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+        background: color-mix(in srgb, var(--bg) 35%, #ffffff 65%);
+        color: var(--text);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 12px;
+        cursor: pointer;
+        display: inline-grid;
+        place-items: center;
+        transition:
+          transform 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+
+      .assistant-modal__close:hover {
+        transform: translateY(-1px);
+        border-color: color-mix(in srgb, var(--border) 50%, transparent);
+        box-shadow: 0 10px 26px rgba(26, 26, 26, 0.12);
+      }
+
+      .assistant-modal__close:focus-visible {
+        outline: 2px solid var(--text);
+        outline-offset: 3px;
+      }
+
+      .assistant-modal__body {
+        padding: 1rem 1.1rem;
+        overflow: auto;
+      }
+
+      .assistant-modal__hint {
+        margin: 0 0 0.75rem;
+        font-size: 0.95rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .assistant-modal__composer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.75rem;
+        padding: 0.9rem 1.1rem 1.1rem;
+        border-top: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+        background: color-mix(in srgb, var(--bg) 10%, #ffffff 90%);
+      }
+
+      html[data-theme="dark"] .assistant-modal__composer {
+        border-top-color: rgba(255, 255, 255, 0.1);
+        background: color-mix(in srgb, var(--bg) 86%, #1f1f23 14%);
+      }
+
+      .assistant-modal__input {
+        width: 100%;
+        min-height: 2.75rem;
+        max-height: 8.5rem;
+        resize: vertical;
+        padding: 0.7rem 0.85rem;
+        border-radius: 12px;
+        border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+        background: color-mix(in srgb, var(--bg) 10%, #ffffff 90%);
+        color: var(--text);
+        font: inherit;
+        font-family: inherit;
+        line-height: 1.5;
+        outline: none;
+      }
+
+      html[data-theme="dark"] .assistant-modal__input {
+        background: color-mix(in srgb, var(--bg) 88%, #1f1f23 12%);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .assistant-modal__input:focus {
+        border-color: color-mix(in srgb, var(--text) 45%, var(--border) 55%);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--text) 12%, transparent);
+      }
+
+      .assistant-modal__send {
+        border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+        background: color-mix(in srgb, var(--text) 92%, var(--bg) 8%);
+        color: var(--bg);
+        border-radius: 12px;
+        padding: 0.7rem 1rem;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+
+      .assistant-modal__send:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(26, 26, 26, 0.16);
+      }
+
+      html[data-theme="dark"] .assistant-modal__send {
+        background: color-mix(in srgb, #ffffff 92%, var(--bg) 8%);
+        color: #121214;
+      }
+
       .top-actions__theme {
         box-sizing: border-box;
         position: relative;
@@ -865,7 +1039,7 @@
       }
 
       .top-actions__theme:focus-visible {
-        outline: 2px solid var(--accent);
+        outline: 2px solid var(--focus-ring);
         outline-offset: 3px;
       }
 
@@ -957,6 +1131,7 @@
         } catch (e) {}
       })();
     </script>
+    <script src="assistant.js" defer></script>
   </head>
   <body class="about-page">
     <div class="top-actions" role="toolbar" aria-label="Page tools">
@@ -968,6 +1143,41 @@
       >
         Assistant
       </button>
+    </div>
+
+    <div class="assistant-overlay" id="assistant-overlay" aria-hidden="true">
+      <div
+        class="assistant-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="assistant-title"
+      >
+        <header class="assistant-modal__header">
+          <p class="assistant-modal__title" id="assistant-title">Assistant</p>
+          <button
+            type="button"
+            class="assistant-modal__close"
+            id="assistant-close"
+            aria-label="Close assistant"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </header>
+        <div class="assistant-modal__body" id="assistant-body">
+          <p class="assistant-modal__hint">
+            Type here as if you’re still on the site. (Chat responses will be wired up next.)
+          </p>
+        </div>
+        <form class="assistant-modal__composer" id="assistant-form">
+          <textarea
+            class="assistant-modal__input"
+            id="assistant-input"
+            placeholder="Ask anything about my work…"
+            rows="1"
+          ></textarea>
+          <button class="assistant-modal__send" type="submit">Send</button>
+        </form>
+      </div>
     </div>
 
     <nav class="site-nav" aria-label="Site">

@@ -1,0 +1,13 @@
+{
+  "name": "kenneth-portfolio",
+  "private": true,
+  "scripts": {
+    "dev": "CHOKIDAR_USEPOLLING=1 CHOKIDAR_INTERVAL=1000 netlify dev --port 8766",
+    "dev:open": "CHOKIDAR_USEPOLLING=1 CHOKIDAR_INTERVAL=1000 netlify dev --port 8766 --open",
+    "build": "echo \"Static site (no build step)\""
+  },
+  "devDependencies": {
+    "netlify-cli": "latest"
+  }
+}
+
