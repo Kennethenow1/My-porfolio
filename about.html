@@ -842,6 +842,8 @@
 
       .assistant-modal {
         width: min(44rem, calc(100vw - 2rem));
+        /* Fixed height prevents the centered dialog from "jumping" when the composer grows */
+        height: min(78vh, 48rem);
         max-height: min(78vh, 48rem);
         display: grid;
         grid-template-rows: auto 1fr auto;
@@ -915,6 +917,7 @@
       .assistant-modal__body {
         padding: 1rem 1.1rem;
         overflow: auto;
+        min-height: 0;
       }
 
       .assistant-modal__hint {

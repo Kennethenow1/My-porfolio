@@ -585,6 +585,9 @@
       overlay.classList.add("is-open");
       overlay.setAttribute("aria-hidden", "false");
       document.documentElement.classList.add("assistant-open");
+      try { if (overlay._wheelRaf) cancelAnimationFrame(overlay._wheelRaf); } catch {}
+      overlay._wheelRaf = null;
+      overlay._wheelTarget = null;
       setTimeout(() => input.focus(), 0);
       if (!indexPromise) indexPromise = buildSiteIndex();
       setTimeout(() => {
